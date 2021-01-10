@@ -9,5 +9,5 @@
   <view class="artical_author">
     文 / {{artical.author}}
   </view>
-  <rich-text nodes="{{artical.content}}"></rich-text>
+  <rich-text nodes="{{content}}"></rich-text>
 </view>

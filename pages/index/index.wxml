@@ -3,9 +3,10 @@
   <loading hidden="{{hiddenLoading}}">
         加载中...
     </loading>
+<view class="item">
   <view class="text_card center">
     <view class="text_header center">
-      - 诗 词-
+      - 诗 词 -
     </view>
     <view class="text_con fz16">
      {{sentence.hitokoto}}
@@ -14,17 +15,21 @@
      {{sentence.from_who}} {{leftSign}}{{sentence.from}}{{rightSign}}
     </view>
   </view>
+</view>
+<view class="item">
   <view class="text_card">
-    <view class="img_con">
+    <view class="center">
       <image src="{{dataList[0].src}}" class="img_top"></image>
     </view> 
-    <view class="text_con">
+    <view class="text_con" style="padding: 8px 24px 32px;">
       {{dataList[0].text}}
     </view>
   </view>
-  <view class="text_card" bindtap="openArtical">
+</view>
+<view class="item" style="margin-bottom:0">
+  <view class="text_art" bindtap="openArtical">
     <view class="text_header center">
-      - 阅 读-
+      - 阅 读 -
     </view>
     <view class="text_read">
       <view class="text_title">
@@ -34,14 +39,13 @@
         文 / {{artical.author}}
       </view>
       <view class="text_des">
-        {{artical.digest}}
+        <text>{{artical.digest}}......</text>
+        <text class="more">阅读全文</text>        
       </view>
     </view>
     <view class="img_con">
       <image src="https://api.xygeng.cn/Bing/" class="img"></image>
     </view> 
-    <view class="text_more right">
-      阅读全文
-    </view>
   </view>
+</view>
 </view>

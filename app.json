@@ -1,14 +1,18 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/articals/index",
+    "pages/example/index"
   ],
 
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "初云",
     "navigationBarTextStyle":"black"
+  },
+  "useExtendedLib": {
+    "weui": true
   },
   "debug": true,
   "style": "v2",

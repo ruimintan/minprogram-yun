@@ -1,0 +1,13 @@
+
+<view class="artical_con">
+  <loading hidden="{{hiddenLoading}}">
+      加载中...
+  </loading>
+  <view class="artical_title">
+    {{artical.title}}
+  </view>
+  <view class="artical_author">
+    文 / {{artical.author}}
+  </view>
+  <rich-text nodes="{{artical.content}}"></rich-text>
+</view>

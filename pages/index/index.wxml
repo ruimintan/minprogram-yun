@@ -1,13 +1,47 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <loading hidden="{{hiddenLoading}}">
+        加载中...
+    </loading>
+  <view class="text_card center">
+    <view class="text_header center">
+      - 诗 词-
+    </view>
+    <view class="text_con fz16">
+     {{sentence.hitokoto}}
+    </view>
+    <view class="from right">
+     {{sentence.from_who}} {{leftSign}}{{sentence.from}}{{rightSign}}
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="text_card">
+    <view class="img_con">
+      <image src="{{dataList[0].src}}" class="img_top"></image>
+    </view> 
+    <view class="text_con">
+      {{dataList[0].text}}
+    </view>
+  </view>
+  <view class="text_card" bindtap="openArtical">
+    <view class="text_header center">
+      - 阅 读-
+    </view>
+    <view class="text_read">
+      <view class="text_title">
+        {{artical.title}}
+      </view>
+      <view class="text_author">
+        文 / {{artical.author}}
+      </view>
+      <view class="text_des">
+        {{artical.digest}}
+      </view>
+    </view>
+    <view class="img_con">
+      <image src="https://api.xygeng.cn/Bing/" class="img"></image>
+    </view> 
+    <view class="text_more right">
+      阅读全文
+    </view>
   </view>
 </view>

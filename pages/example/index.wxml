@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="default" bindtap="openConfirm">确认取消按钮</button>
+  </view>
+  <view class="">
+    <mp-dialog title="test" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+      <view>test content</view>
+    </mp-dialog>
+  </view>
+</view>

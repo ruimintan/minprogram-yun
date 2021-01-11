@@ -12,14 +12,16 @@
      {{sentence.hitokoto}}
     </view>
     <view class="from right">
-     {{sentence.from_who}} {{leftSign}}{{sentence.from}}{{rightSign}}
+      <text wx:if="{{sentence.from_who}}">{{sentence.from_who}}</text>
+      <text wx:else>from</text>
+      <text>《{{sentence.from}}》</text>
     </view>
   </view>
 </view>
 <view class="item">
   <view class="text_card">
     <view class="center">
-      <image src="{{dataList[0].src}}" class="img_top"></image>
+      <image src="{{dataList[0].src}}" bindtap='previewImage' class="img_top"></image>
     </view> 
     <view class="text_con" style="padding: 8px 24px 32px;">
       {{dataList[0].text}}

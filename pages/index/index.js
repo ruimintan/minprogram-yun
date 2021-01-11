@@ -2,12 +2,10 @@
 Page({
   data: {
     hiddenLoading:true,
-    leftSign:"《",
-    rightSign:"》",
     dataList:[],//ONE近七日数据
     sentence:[],//每日一句
     artical:[],//每日一文
-    articalDate:'20110310'
+    articalDate:'20110310',
   },
   //事件处理函数
   openArtical: function () {
@@ -25,7 +23,23 @@ Page({
     this.setData({
         hiddenLoading: !this.data.hiddenLoading
     });
-},
+  },
+/**
+   * 长按预览保存图片到本地
+   */
+  previewImage:function(e){
+    var that = this;
+    wx.previewImage({
+      current: that.data.dataList[0].src,//当前显示图片链接 
+      urls: [that.data.dataList[0].src], //要预览的图片
+    })
+    wx.getImageInfo({
+      src: that.data.dataList[0].src,
+      success(res){
+        console.log(res)
+      }
+    })
+  },
   getDataList:function(){ //获取ONE
     var that = this
     this.changeHidden()

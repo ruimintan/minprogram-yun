@@ -6,7 +6,7 @@
 <view class="item">
   <view class="text_card center">
     <view class="text_header center">
-      - 诗 词 -
+      - 一 言 -
     </view>
     <view class="text_con fz16">
      {{sentence.hitokoto}}

@@ -5,7 +5,12 @@ Page({
     dataList:[],//ONE近七日数据
     sentence:[],//每日一句
     artical:[],//每日一文
+    bingUrl:'',//bing壁纸
     articalDate:'20110310',
+    indicatorDots: false, // 指示点
+    autoplay: false, // 是否自动切换
+    interval: 2000, // 自动切换时间间隔
+    duration: 500, // 滑动动画时长
   },
   //事件处理函数
   openArtical: function () {
@@ -18,6 +23,7 @@ Page({
     this.getDataList()
     this.getSentence()
     this.getArtical()
+    this.getBing()
   },
   changeHidden: function(){
     this.setData({
@@ -67,6 +73,21 @@ Page({
         console.log(data)
         that.setData({
           sentence: data,
+        })      
+      },
+      fail:function(err){
+        console.log(err)
+      }
+    })
+  },
+  getBing:function(){ // 获取bing壁纸
+    var that = this
+    wx.request({
+      url:"https://api.xygeng.cn/Bing/url/",
+      success:function(res){    
+        var data=res.data.data
+        that.setData({
+          bingUrl: data,
         })      
       },
       fail:function(err){

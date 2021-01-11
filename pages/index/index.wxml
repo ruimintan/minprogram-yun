@@ -12,12 +12,22 @@
      {{sentence.hitokoto}}
     </view>
     <view class="from right">
-      <text wx:if="{{sentence.from_who}}">{{sentence.from_who}}</text>
+      <text wx:if="{{sentence.from_who && sentence.from_who!='null'}}">{{sentence.from_who}}</text>
       <text wx:else>from</text>
       <text>《{{sentence.from}}》</text>
     </view>
   </view>
 </view>
+<!-- <view>
+  <swiper>
+    <block wx:for="{{dataList}}">
+      <swiper-item>
+        <image src="{{item.src}}"></image>
+        <text>{{item.text}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
+</view> -->
 <view class="item">
   <view class="text_card">
     <view class="center">
@@ -46,7 +56,7 @@
       </view>
     </view>
     <view class="img_con">
-      <image src="https://api.xygeng.cn/Bing/" class="img"></image>
+      <image src="{{bingUrl}}" class="img"></image>
     </view> 
   </view>
 </view>

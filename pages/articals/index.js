@@ -6,16 +6,34 @@ Page({
     hiddenLoading:true,
     artical:[],//每日一文
     content:'',
-    articalDate:'20110310'
+    articalDate:'20110310',
+    bingUrl:'',//bing壁纸
   },
  
   onLoad: function () {
     this.getArtical()
+    this.getBing()
   },
   changeHidden: function(){
     this.setData({
         hiddenLoading: !this.data.hiddenLoading
     });
+  },
+  /**
+   * 长按预览保存图片到本地
+   */
+  previewImage:function(e){
+    var that = this;
+    wx.previewImage({
+      current: that.data.bingUrl,//当前显示图片链接 
+      urls: [that.data.bingUrl], //要预览的图片
+    })
+    wx.getImageInfo({
+      src: that.data.bingUrl,
+      success(res){
+        console.log(res)
+      }
+    })
   },
   getArticalDate: function(){
     var now = new Date()
@@ -30,6 +48,21 @@ Page({
     this.setData({
       articalDate: articalDate
     });
+  },
+  getBing:function(){ // 获取bing壁纸
+    var that = this
+    wx.request({
+      url:"https://api.xygeng.cn/Bing/url/",
+      success:function(res){    
+        var data=res.data.data
+        that.setData({
+          bingUrl: data,
+        })      
+      },
+      fail:function(err){
+        console.log(err)
+      }
+    })
   },
   getArtical:function(){ // 获取每日一文
     this.changeHidden()

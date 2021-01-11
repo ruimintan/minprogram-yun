@@ -16,6 +16,18 @@
   line-height: 38px;
   margin-bottom: 24px;
 }
+.img{
+  width: 100%;
+  border-radius: 6px;
+}
+.dec{
+  text-align: right;
+  margin: -4px 8px 4px 0;
+}
+.tips{
+  font-size: 12px;
+  color: #999;
+}
 .p_class{
   margin-bottom: 24px;
 }

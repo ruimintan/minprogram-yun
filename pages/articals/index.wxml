@@ -9,5 +9,12 @@
   <view class="artical_author">
     文 / {{artical.author}}
   </view>
+  <view class="img_con">
+    <image src="{{bingUrl}}" bindtap='previewImage' class="img"></image>
+  </view>
+  <view class="dec">
+    <text class="tips">cr: Bing</text>
+    <!-- <text>（点击查看原图）</text> -->
+  </view>
   <rich-text nodes="{{content}}"></rich-text>
 </view>

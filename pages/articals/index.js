@@ -77,7 +77,12 @@ Page({
         var data=res.data.data
         console.log(data)
         var content=data.content
-        content = content.replace(/\<p>/gi, '<p class="p_class">')
+        content = content.replace(/\s+/gi, '')
+        content = content
+                .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
+                .replace(/<p([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<p')
+                .replace(/<p>/ig, '<p class="p_class">')
+    
         that.setData({
           artical: data,
           content: content,

@@ -31,7 +31,7 @@
 <view class="item">
   <view class="text_card">
     <view class="center">
-      <image src="{{dataList[0].src}}" bindtap='previewImage' class="img_top"></image>
+      <image mode="widthFix" src="{{dataList[0].src}}" bindtap='previewImage' class="img_top"></image>
     </view> 
     <view class="text_con" style="padding: 8px 24px 32px;">
       {{dataList[0].text}}
@@ -56,7 +56,7 @@
       </view>
     </view>
     <view class="img_con">
-      <image src="{{bingUrl}}" class="img"></image>
+      <image mode="widthFix" src="{{bingUrl}}" class="img"></image>
     </view> 
   </view>
 </view>

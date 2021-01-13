@@ -10,7 +10,7 @@
     文 / {{artical.author}}
   </view>
   <view class="img_con">
-    <image src="{{bingUrl}}" bindtap='previewImage' class="img"></image>
+    <image mode="widthFix" src="{{bingUrl}}" bindtap='previewImage' class="img"></image>
   </view>
   <view class="dec">
     <text class="tips">cr: Bing</text>

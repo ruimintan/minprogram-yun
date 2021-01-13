@@ -1,8 +1,0 @@
-/**index.wxss**/
-.container{
-  background: #f0f2f5;
-  margin: 0;
-  padding: 20px;
-  height: 100vh;
-  /* min-height: calc(100vh - 10px); */
-}

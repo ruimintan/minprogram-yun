@@ -1,8 +1,9 @@
 {
   "pages":[
+    
     "pages/index/index",
     "pages/articals/index",
-    "pages/example/index"
+    "pages/weather/index"
   ],
 
   "window":{
@@ -10,6 +11,11 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "初云",
     "navigationBarTextStyle":"black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于天气预报定位" 
+    }
   },
   "useExtendedLib": {
     "weui": true

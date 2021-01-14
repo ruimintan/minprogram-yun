@@ -2,7 +2,7 @@
 	<image class="bg-wave" src="https://codermoyv.gitee.io/coder-moyv/assets/images/wechat/bg_wave.gif"></image>
 	<view class="row">
 		<view class="row location-wrap" bindtap="selectLocation">
-			<image class="icon" src="/images/icon_location.png"></image>
+			<image class="icon" src="/assets/images/icon_location.png"></image>
 			<view class="title">{{City}} {{County}}</view>
 		</view>
 

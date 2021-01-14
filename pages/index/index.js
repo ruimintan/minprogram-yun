@@ -1,11 +1,13 @@
 //index.js
 const util = require('../../utils/util.js')
+const jinrishici = require('../../utils/jinrishici.js')
 
 Page({
   data: {
     hiddenLoading:true,
     dataList:[],//ONE近七日数据
     sentence:[],//每日一句
+    jinrishici:[],//今日诗词
     artical:[],//每日一文
     bingUrl:'',//bing壁纸
     articalDate:'20110310',
@@ -22,6 +24,11 @@ Page({
   },
 
   onLoad: function () {
+    jinrishici.load(result => {
+      // 下面是处理逻辑示例
+      console.log(result)
+      this.setData({"jinrishici": result.data.content})
+    })
     this.setData({
       articalDate: util.getArticalDate()
     })

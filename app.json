@@ -1,11 +1,22 @@
 {
   "pages":[
-    
     "pages/index/index",
     "pages/articals/index",
-    "pages/weather/index"
+    "pages/weather/index",
+    "pages/logs/logs"
   ],
-
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/weather/index",
+      "text": "天气"
+    }]
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",

@@ -1,9 +1,9 @@
 //logs.js
+const WXAPI = require('../../wxapi/main')
 const util = require('../../utils/util.js')
 
 Page({
   data: {
-    hiddenLoading:true,
     artical:[],//每日一文
     content:'',
     articalDate:'20110310',
@@ -17,11 +17,7 @@ Page({
     this.getArtical()
     this.getBing()
   },
-  changeHidden: function(){
-    this.setData({
-        hiddenLoading: !this.data.hiddenLoading
-    });
-  },
+
   /**
    * 长按预览保存图片到本地
    */
@@ -41,48 +37,44 @@ Page({
 
   getBing:function(){ // 获取bing壁纸
     var that = this
-    wx.request({
-      url:"https://api.xygeng.cn/Bing/url/",
-      success:function(res){    
-        var data=res.data.data
+    wx.showLoading({
+      title: '加载中',
+    })
+    WXAPI.getBingPic().then(function (res) {
+      if (res.code == 200) {
         that.setData({
-          bingUrl: data,
-        })      
-      },
-      fail:function(err){
-        console.log(err)
+          bingUrl: res.data,
+        })
       }
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
     })
   },
   getArtical:function(){ // 获取每日一文
-    this.changeHidden()
     var that = this
-    wx.request({
-      // url:"https://interface.meiriyiwen.com/article/today?dev=1",
-      // url：https://interface.meiriyiwen.com/article/day?dev=1&date= + 日期
-      //  每日一文api支持日期20110306-20200521
-      url:"https://interface.meiriyiwen.com/article/day?dev=1&date=" + that.data.articalDate,
-      success:function(res){
-        var data=res.data.data
-        console.log(data)
-        var content=data.content
-        content = content.replace(/\s+/gi, '')
-        content = content
-                .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
-                .replace(/<p([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<p')
-                .replace(/<p>/ig, '<p class="p_class">')
-    
-        that.setData({
-          artical: data,
-          content: content,
-        }) 
-       
-        that.changeHidden()   
-      },
-      fail:function(err){
-        console.log(err)
-        that.changeHidden()
-      }
+    wx.showLoading({
+      title: '加载中',
+    })
+    const data=that.data.articalDate
+    WXAPI.getTodayArtical(data).then(function (res) {
+      console.log(res)
+      var data=res.data
+      console.log(data)
+      var content=data.content
+      content = content.replace(/\s+/gi, '')
+      content = content
+              .replace(/<p([\s\w"=\/\.:;]+)((?:(style="[^"]+")))/ig, '<p')
+              .replace(/<p([\s\w"=\/\.:;]+)((?:(class="[^"]+")))/ig, '<p')
+              .replace(/<p>/ig, '<p class="p_class">')
+  
+      that.setData({
+        artical: data,
+        content: content,
+      }) 
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
     })
   },
 })

@@ -1,11 +1,11 @@
 //index.js
+const WXAPI = require('../../wxapi/main')
 const util = require('../../utils/util.js')
 const jinrishici = require('../../utils/jinrishici.js')
 const amapFile = require('../../libs/amap-wx.js');//如：..­/..­/libs/amap-wx.js
 
 Page({
   data: {
-    hiddenLoading:true,
     liveData:{},//天气数据
     dataList:[],//ONE近七日数据
     sentence:[],//每日一句
@@ -48,24 +48,18 @@ Page({
     var that = this;
     var myAmapFun = new amapFile.AMapWX({key:'7fc877b9234e8ec91b38db35f3816e09'});
     myAmapFun.getWeather({
-      success: function(data){
-        //成功回调
+      success: function(data){ //成功回调      
         that.setData({
           liveData: data.liveData
         })  
       },
-      fail: function(info){
-        //失败回调
+      fail: function(info){ //失败回调     
         console.log(info)       
         wx.showToast({ title: '天气信息获取失败！' })
       }
     })
   },
-  changeHidden: function(){
-    this.setData({
-        hiddenLoading: !this.data.hiddenLoading
-    });
-  },
+ 
 /**
    * 长按预览保存图片到本地
    */
@@ -83,72 +77,68 @@ Page({
     })
   },
   getDataList:function(){ //获取ONE
-    var that = this
-    this.changeHidden()
-    wx.request({
-      url:"https://api.youngam.cn/api/one.php",
-      success:function(res){
-        var data=res.data.data
-        console.log(data)
+    let that = this;
+    wx.showLoading({
+      "title": "加载中"
+    });                  
+    WXAPI.getOneList().then(function (res) {
+      if (res.code == 200) {
         that.setData({
-          dataList: data
-        })  
-        that.changeHidden()     
-      },
-      fail:function(err){
-        console.log(err)
+          dataList: res.data,
+        })
       }
-    })
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
+    }) 
   },
   getSentence:function(){ // 获取每日诗词
     var that = this
-    wx.request({
-      url:"https://v1.hitokoto.cn/?c=i",
-      success:function(res){      
-        var data=res.data
-        console.log(data)
-        that.setData({
-          sentence: data,
-        })      
-      },
-      fail:function(err){
-        console.log(err)
-      }
+    wx.showLoading({
+      title: '加载中',
+    })
+    WXAPI.getHitokoto('i').then(function (res) {
+      console.log(res)
+      that.setData({
+        sentence: res,
+      })
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
     })
   },
   getBing:function(){ // 获取bing壁纸
     var that = this
-    wx.request({
-      url:"https://api.xygeng.cn/Bing/url/",
-      success:function(res){    
-        var data=res.data.data
+    wx.showLoading({
+      title: '加载中',
+    })
+    WXAPI.getBingPic().then(function (res) {
+      console.log(res)
+      if (res.code == 200) {
         that.setData({
-          bingUrl: data,
-        })      
-      },
-      fail:function(err){
-        console.log(err)
+          bingUrl: res.data,
+        })
       }
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
     })
   },
  
   getArtical:function(){ // 获取每日一文
     var that = this
-    wx.request({
-      // url:"https://interface.meiriyiwen.com/article/today?dev=1",
-      // url：https://interface.meiriyiwen.com/article/day?dev=1&date= + 日期
-      //  每日一文api支持日期20110306-20200521
-      url:"https://interface.meiriyiwen.com/article/day?dev=1&date="+ that.data.articalDate,
-      success:function(res){
-        var data=res.data.data
-        console.log(data)
+    wx.showLoading({
+      title: '加载中',
+    })
+    const data=that.data.articalDate
+    WXAPI.getTodayArtical(data).then(function (res) {
+      console.log(res)
         that.setData({
-          artical: data,
-        })      
-      },
-      fail:function(err){
-        console.log(err)
-      }
+          artical: res.data,
+        })
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
     })
   },
 })

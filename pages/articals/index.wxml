@@ -1,8 +1,5 @@
 
 <view class="artical_con">
-  <loading hidden="{{hiddenLoading}}">
-      加载中...
-  </loading>
   <view class="artical_title">
     {{artical.title}}
   </view>

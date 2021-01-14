@@ -1,8 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-<loading hidden="{{hiddenLoading}}">
-  加载中...
-</loading>
 <view class="sticky">
   <view class="fl ml24 top_item">
     <text class="date">{{dateObj.date}}</text>
@@ -39,7 +36,7 @@
     </view>
   </view>
 </view>
-<view class="item" style="margin-bottom:0">
+<view class="item">
   <view class="text_art" bindtap="openArtical">
     <view class="text_header center">
       - 阅 读 -

@@ -19,7 +19,7 @@ Page({
     var that = this
     wx.chooseLocation({
       success(res) {
-        //console.log(res)
+        console.log(res,'============')
         that.setData({
           location: res.longitude + "," + res.latitude
         })

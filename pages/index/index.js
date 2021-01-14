@@ -1,16 +1,20 @@
 //index.js
 const util = require('../../utils/util.js')
 const jinrishici = require('../../utils/jinrishici.js')
+const amapFile = require('../../libs/amap-wx.js');//如：..­/..­/libs/amap-wx.js
 
 Page({
   data: {
     hiddenLoading:true,
+    liveData:{},//天气数据
     dataList:[],//ONE近七日数据
     sentence:[],//每日一句
     jinrishici:[],//今日诗词
     artical:[],//每日一文
     bingUrl:'',//bing壁纸
+    dateObj:{},
     articalDate:'20110310',
+    en_month:'Jan',
     indicatorDots: false, // 指示点
     autoplay: false, // 是否自动切换
     interval: 2000, // 自动切换时间间隔
@@ -30,12 +34,32 @@ Page({
       this.setData({"jinrishici": result.data.content})
     })
     this.setData({
-      articalDate: util.getArticalDate()
+      dateObj: util.getArticalDate(),
+      articalDate: util.getArticalDate().articalDate,
+      en_month: util.formatEnMonth(util.getArticalDate().month),
     })
     this.getDataList()
     this.getSentence()
     this.getArtical()
     this.getBing()
+    this.getWeather()
+  },
+  getWeather: function(){
+    var that = this;
+    var myAmapFun = new amapFile.AMapWX({key:'7fc877b9234e8ec91b38db35f3816e09'});
+    myAmapFun.getWeather({
+      success: function(data){
+        //成功回调
+        that.setData({
+          liveData: data.liveData
+        })  
+      },
+      fail: function(info){
+        //失败回调
+        console.log(info)       
+        wx.showToast({ title: '天气信息获取失败！' })
+      }
+    })
   },
   changeHidden: function(){
     this.setData({

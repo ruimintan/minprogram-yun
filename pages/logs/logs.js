@@ -11,14 +11,6 @@ Page({
         return util.formatTime(new Date(log))
       })
     })
-    setTimeout(()=>{
-      wx.navigateTo({
-        url: 'pages/index/index',
-      })
-    },500)
-  },
-  onShow: function () {
-  
   }
 })
 

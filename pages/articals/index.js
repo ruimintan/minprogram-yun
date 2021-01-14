@@ -12,7 +12,7 @@ Page({
  
   onLoad: function () {
     this.setData({
-      articalDate: util.getArticalDate()
+      articalDate: util.getArticalDate().articalDate
     })
     this.getArtical()
     this.getBing()

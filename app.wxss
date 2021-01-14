@@ -8,4 +8,31 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+}
+.fl{
+  float: left;
 } 
+.fr{
+  float: right;
+}
+.ml8{
+  margin-left:8px;
+}
+.ml16{
+  margin-left:16px;
+}
+.ml24{
+  margin-left:24px;
+}
+.mr8{
+  margin-right:8px;
+}
+.mr16{
+  margin-right:16px;
+}
+.mr24{
+  margin-right:24px;
+}
+.center{
+  text-align: center;
+}

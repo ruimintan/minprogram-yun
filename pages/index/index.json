@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "mp-dialog": "weui-miniprogram/dialog/dialog"
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "mp-sticky": "@miniprogram-component-plus/sticky"
   }
 }

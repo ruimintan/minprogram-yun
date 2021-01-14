@@ -1,8 +1,20 @@
 <!--index.wxml-->
 <view class="container">
-  <loading hidden="{{hiddenLoading}}">
-        加载中...
-    </loading>
+<loading hidden="{{hiddenLoading}}">
+  加载中...
+</loading>
+<view class="sticky">
+  <view class="fl ml24 top_item">
+    <text class="date">{{dateObj.date}}</text>
+    <text class="month"> {{en_month}}</text>
+    <text class="year"> .{{dateObj.year}}</text>
+  </view>
+  <view wx:if="{{liveData && liveData.temperature}}" class="fr mr24 top_item">
+    <text>{{liveData.city}}</text>
+    <text style="margin:0 6px">{{liveData.weather}}</text>
+    <text>{{liveData.temperature}}℃</text>
+  </view>
+</view>
 <view class="item">
   <view class="text_card center">
     <view class="text_header center">
@@ -13,21 +25,10 @@
     </view>
     <view class="from right">
       <text wx:if="{{sentence.from_who && sentence.from_who!='null'}}">{{sentence.from_who}}</text>
-      <text wx:else>from</text>
       <text>《{{sentence.from}}》</text>
     </view>
   </view>
 </view>
-<!-- <view>
-  <swiper>
-    <block wx:for="{{dataList}}">
-      <swiper-item>
-        <image src="{{item.src}}"></image>
-        <text>{{item.text}}</text>
-      </swiper-item>
-    </block>
-  </swiper>
-</view> -->
 <view class="item">
   <view class="text_card">
     <view class="center">

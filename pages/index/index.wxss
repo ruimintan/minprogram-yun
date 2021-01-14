@@ -6,6 +6,32 @@
   /* height: 100vh; */
   /* min-height: calc(100vh - 10px); */
 }
+/* 吸顶效果 */
+.sticky{
+  font-size: 12px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  height: 48px;
+  background-color:rgba(255,255,255,0.8);
+}
+.sticky .top_item{
+  height: 48px;
+  line-height: 48px;
+}
+.sticky .fr{
+  color:#999999;
+  font-size: 12px;
+}
+.sticky .date{
+  font-size: 22px;
+}
+.sticky .month{
+  font-size: 14px;
+}
+.sticky .year{
+  font-size: 10px;
+}
 .item{
   width: 100%;
   background: #fff;

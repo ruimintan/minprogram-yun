@@ -1,6 +1,9 @@
 /**index.wxss**/
-.container{
+page{
   background: #f0f2f5;
+}
+.container{
+  /* background: #f0f2f5; */
   margin: 0;
   padding: 0px;
   /* height: 100vh; */
@@ -111,23 +114,23 @@
   color: #999999;
 }
 .history_img{
-  height: 80px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   margin:0;
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
 }
 .history_card{
   position: relative;
-  height: 80px;
-  margin: 8px 16px 0;
+  height: 100px;
+  margin: 8px 16px 16px;
   border-radius: 6px;
   border: 1px solid #EBEEF5;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
   z-index: 2;
 }
 .history_txt{
-  width: calc(100% - 80px);
+  width: calc(100% - 100px);
   height: 80px;
   position: absolute;
   top: 0;
@@ -136,8 +139,9 @@
   text-align: center;
 }
 .tab_right{
-  padding: 12px;
+  padding: 16px 8px;
 }
+
 .content_item{
   height: 18px;
   line-height: 18px;
@@ -146,7 +150,8 @@
 }
 .loadmore{
   position: relative;
-  height: 60px;
+  height: 20px;
+  padding: 16px;
 }
 .lookmore{
   color: #409EFF;
@@ -156,11 +161,12 @@
   bottom: 24px;
   z-index: 1;
 }
-.more_img{
-  height: 60px;
+.more_img{ 
   position: absolute;
   right: 0;
   bottom: 0;
+  height: 60px;
+  width: 80px;
 }
 .center{
   text-align: center;

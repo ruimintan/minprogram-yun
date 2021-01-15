@@ -147,13 +147,18 @@ Page({
     })
     WXAPI.getHistoryToday('json').then(function (res) {
       console.log(res)
+      if(res.result){
         that.setData({
           resultToday: res.today,
           historyTodayData: res.result,
         })
+      }else{ // 请求失败回调
+        that.getHistoryToday()
+      }      
       wx.hideLoading()
     }).catch(function (e) {
       console.log(e)
+      that.getHistoryToday()
     })
   },
 })

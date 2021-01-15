@@ -67,7 +67,7 @@
   <view class="history_card">
     <image mode="widthFix" src="/assets/images/history.gif" class="history_img"></image>
     <view class="history_txt">
-      <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="5000" display-multiple-items='4'>
+      <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="3000" display-multiple-items='4'>
           <view class="right_item">
             <block wx:for='{{historyTodayData}}' wx:key="year">
               <swiper-item class="swiper_item">
@@ -80,9 +80,9 @@
       </swiper>
     </view>
   </view>
-  <view class="loadmore">
+  <view class="loadmore" wx:if="{{historyTodayData && historyTodayData.length>0}}">
       <text class="lookmore">点击查看详情</text>
-      <image mode="widthFix" src="/assets/images/more.gif" class="history_img more_img"></image>
+      <image mode="widthFix" src="/assets/images/more.gif" class="more_img"></image>
     </view>
 </view>
 <view class="footer">

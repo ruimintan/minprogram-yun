@@ -1,5 +1,8 @@
 /**app.wxss**/
 @import './styles/iconfont.wxss';  
+page{
+  background: #f0f2f5;
+}
 .container {
   height: 100%;
   display: flex;
@@ -8,6 +11,7 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
+  background: #f0f2f5;
 }
 .fl{
   float: left;
@@ -35,4 +39,25 @@
 }
 .center{
   text-align: center;
+}
+.footer{
+  background: #f0f2f5;
+  height: 48px;
+  color:#999999;
+  font-size: 12px;
+  text-align: center;
+}
+.footer .love_img{
+  width: 32px;
+  height: 32px;
+  position: relative;
+  top: 12px;
+}
+.footer .Copyright{
+  position: relative;
+  left: 6px;
+}
+.footer .myname{
+  position: relative;
+  right: 6px;
 }

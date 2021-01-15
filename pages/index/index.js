@@ -15,10 +15,8 @@ Page({
     dateObj:{},
     articalDate:'20110310',
     en_month:'Jan',
-    indicatorDots: false, // 指示点
-    autoplay: false, // 是否自动切换
-    interval: 2000, // 自动切换时间间隔
-    duration: 500, // 滑动动画时长
+    historyTodayData:[], //历史上的今天
+    resultToday:'', 
   },
   //事件处理函数
   openArtical: function () {
@@ -43,6 +41,7 @@ Page({
     this.getArtical()
     this.getBing()
     this.getWeather()
+    this.getHistoryToday()
   },
   getWeather: function(){
     var that = this;
@@ -124,7 +123,6 @@ Page({
       console.log(e)
     })
   },
- 
   getArtical:function(){ // 获取每日一文
     var that = this
     wx.showLoading({
@@ -135,6 +133,23 @@ Page({
       console.log(res)
         that.setData({
           artical: res.data,
+        })
+      wx.hideLoading()
+    }).catch(function (e) {
+      console.log(e)
+    })
+  },
+
+  getHistoryToday:function(){ // 获取历史上的今天
+    var that = this
+    wx.showLoading({
+      title: '加载中',
+    })
+    WXAPI.getHistoryToday('json').then(function (res) {
+      console.log(res)
+        that.setData({
+          resultToday: res.today,
+          historyTodayData: res.result,
         })
       wx.hideLoading()
     }).catch(function (e) {

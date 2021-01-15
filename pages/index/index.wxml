@@ -7,6 +7,7 @@
     <text class="year"> .{{dateObj.year}}</text>
   </view>
   <view wx:if="{{liveData && liveData.temperature}}" class="fr mr24 top_item">
+    <image src="/assets/images/click.gif" class="clickImg"></image>
     <text>{{liveData.city}}</text>
     <text style="margin:0 6px">{{liveData.weather}}</text>
     <text>{{liveData.temperature}}℃</text>
@@ -57,5 +58,36 @@
       <image mode="widthFix" src="{{bingUrl}}" class="img"></image>
     </view> 
   </view>
+</view>
+<view class="item">
+  <view class="ml24">
+    <view class="history_title">历史上的今天</view>
+    <text class="history_date">{{resultToday}}</text>
+  </view>
+  <view class="history_card">
+    <image mode="widthFix" src="/assets/images/history.gif" class="history_img"></image>
+    <view class="history_txt">
+      <swiper class="tab_right" vertical="true" autoplay="true" circular="true" interval="5000" display-multiple-items='4'>
+          <view class="right_item">
+            <block wx:for='{{historyTodayData}}' wx:key="year">
+              <swiper-item class="swiper_item">
+                <view class='content_item'>
+                  <text class='wawa'>{{item.title}}</text>
+                </view>
+              </swiper-item>
+            </block>       
+          </view>
+      </swiper>
+    </view>
+  </view>
+  <view class="loadmore">
+      <text class="lookmore">点击查看详情</text>
+      <image mode="widthFix" src="/assets/images/more.gif" class="history_img more_img"></image>
+    </view>
+</view>
+<view class="footer">
+  <text class="Copyright">Copyright</text>
+  <image mode="widthFix" src="/assets/images/love.gif" class="love_img"></image>
+  <text class="myname">ruimin.tan</text>
 </view>
 </view>

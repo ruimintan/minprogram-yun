@@ -59,5 +59,5 @@ module.exports = {
   getTodayArtical: (data) => request(
                             'interface.meiriyiwen.com/article/day?dev=1&date='+data,
                             'get', data),     // 每日一文 支持日期20110306-20200521
- 
+  getHistoryToday: (data) => request('www.ipip5.com/today/api.php?type='+ data,'get', data),   // 历史上的今天
 }

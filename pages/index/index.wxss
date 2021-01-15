@@ -15,12 +15,18 @@
   height: 48px;
   background-color:rgba(255,255,255,0.8);
 }
+.clickImg{
+  width: 38px;
+  height: 38px;
+  float: left;
+}
 .sticky .top_item{
   height: 48px;
   line-height: 48px;
 }
 .sticky .fr{
-  color:#999999;
+  color: #409EFF;
+  /* color:#999999; */
   font-size: 12px;
 }
 .sticky .date{
@@ -38,13 +44,14 @@
   margin-bottom: 10px;
 }
 .text_card{
-  margin: 16px;
+  margin: 24px 16px;
   border-radius: 6px;
   border: 1px solid #EBEEF5;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
 .text_art{
-  margin: 16px;
+  margin: 0 16px;
+  margin-bottom: 16px;
 }
 .img_con{
   width: 100%;
@@ -94,6 +101,66 @@
 .more{
   font-size: 12px;
   color:rgb(0, 183, 255);
+}
+.history_title{
+  margin-top: 16px;
+  font-size: 16px;
+}
+.history_date{
+  font-size: 12px;
+  color: #999999;
+}
+.history_img{
+  height: 80px;
+  width: 80px;
+  margin:0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.history_card{
+  position: relative;
+  height: 80px;
+  margin: 8px 16px 0;
+  border-radius: 6px;
+  border: 1px solid #EBEEF5;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  z-index: 2;
+}
+.history_txt{
+  width: calc(100% - 80px);
+  height: 80px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  text-align: center;
+}
+.tab_right{
+  padding: 12px;
+}
+.content_item{
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  color:#666666;
+}
+.loadmore{
+  position: relative;
+  height: 60px;
+}
+.lookmore{
+  color: #409EFF;
+  font-size: 12px;
+  position: absolute;
+  right: 60px;
+  bottom: 24px;
+  z-index: 1;
+}
+.more_img{
+  height: 60px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .center{
   text-align: center;

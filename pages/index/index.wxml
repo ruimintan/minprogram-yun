@@ -59,7 +59,7 @@
     </view> 
   </view>
 </view>
-<view class="item">
+<view class="item" bindtap="openHistory">
   <view class="ml24">
     <view class="history_title">历史上的今天</view>
     <text class="history_date">{{resultToday}}</text>

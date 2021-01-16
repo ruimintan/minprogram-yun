@@ -21,9 +21,20 @@ Page({
   //事件处理函数
   openArtical: function () {
    wx.navigateTo({
-     url: '../articals/index',
+     url: '../articals/articals',
    })
   },
+  // 打开历史上的今天
+  openHistory: function () {
+    var that = this;
+    if(that.data.historyTodayData.length>0){
+      wx.navigateTo({
+        url: '../history/history',
+      })
+    }else{
+      return false
+    }
+   },
 
   onLoad: function () {
     jinrishici.load(result => {

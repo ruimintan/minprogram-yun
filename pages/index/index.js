@@ -27,9 +27,10 @@ Page({
   // 打开历史上的今天
   openHistory: function () {
     var that = this;
+    let today=that.data.resultToday
     if(that.data.historyTodayData.length>0){
       wx.navigateTo({
-        url: '../history/history',
+        url: '../history/history?today='+ today,
       })
     }else{
       return false

@@ -1,4 +1,15 @@
 
-<view class="history_con">
-  历史上的今天
+<view class='history_con'>
+  <!-- <view class="page_title">
+    <text>{{resultToday}}</text>
+  </view> -->
+  <block wx:for="{{historyTodayData}}" wx:key="year" data-index="{{index}}">
+    <view class='history_item_list'>
+      <text class="iconfont icon-timefill "></text>
+      <view class='histor_item {{index==historyTodayData.length-1?"last":""}}'>
+        <view class='histor_item_year'>{{item.year}}年</view>
+        <view class='histor_item_tit'>{{item.title}}</view>
+      </view>
+    </view> 
+  </block>
 </view>

@@ -6,11 +6,11 @@
     <text class="month"> {{en_month}}</text>
     <text class="year"> .{{dateObj.year}}</text>
   </view>
-  <view wx:if="{{liveData && liveData.temperature}}" class="fr mr24 top_item">
+  <view wx:if="{{temperature}}" class="fr mr24 top_item" bindtap="openQweather">
     <image src="/assets/images/click.gif" class="clickImg"></image>
-    <text>{{liveData.city}}</text>
-    <text style="margin:0 6px">{{liveData.weather}}</text>
-    <text>{{liveData.temperature}}℃</text>
+    <text>{{city}}</text>
+    <text style="margin:0 6px">{{nowWeather}}</text>
+    <text>{{temperature}}℃</text>
   </view>
 </view>
 <view class="item">

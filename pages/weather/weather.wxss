@@ -4,9 +4,23 @@ page {
 }
 
 /* 工具类 */
-.row {
-  display: flex;
-  align-items: center;
+.level1{
+  background-color: #309434;
+}
+.level2{
+  background-color: #fbc011;
+}
+.level3{
+  background-color: #ff9800;
+}
+.level4{
+  background-color: #ff4032d1;
+}
+.level5{
+  background-color: #9c27b0;
+}
+.level6{
+  background-color: #a73208;
 }
 
 .mb-32{
@@ -15,7 +29,7 @@ page {
 
 /* 页面样式 */
 .header-modular {
-  height: 400rpx;
+  height: 660rpx;
   background-color: #64C8FA;
   background: linear-gradient(to bottom, #56CCF2, #2F80ED);
   position: relative;
@@ -34,46 +48,73 @@ page {
 
 .header-modular .location-wrap {
   color: #ffffff;
-  font-weight: bold;
-  font-size: 36rpx;
+  font-size: 28rpx;
 }
 
 .header-modular .location-wrap .icon {
-  width: 40rpx;
-  height: 40rpx;
+  width: 28rpx;
+  height: 28rpx;
   margin-right: 8rpx;
 }
 
 .header-modular .tmp {
-  font-size: 200rpx;
-  /* font-weight: bold; */
+  font-size: 150rpx;
   color: #ffffff;
-  margin-right: auto;
+  margin-left: 88px;
 }
 
 .header-modular .icon-weather {
-  width: 200rpx;
-  height: 200rpx;
+  width: 150rpx;
+  height: 150rpx;
 }
-
+.air{
+  text-align: center;
+}
+.air .weathertext{
+  font-size: 40rpx;
+  opacity: 0.8;
+  color: #ffffff;
+  margin-left: 24px;
+}
+.nowAir{
+  color: #ffffff;
+  font-size: 28rpx;
+  display: inline-block;
+  padding: 0 6rpx;
+  border-radius: 6rpx;
+  margin-left: 24rpx;
+}
+.icon-kongqi{
+  font-size: 28rpx;
+}
+.aqi{
+  margin: 0 6rpx;
+}
+.jinrishici{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background: #00000030;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  opacity: 0.8;
+  padding: 4px;
+  margin-top: 16px;
+}
 .header-modular .tips-wrap {
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
+  margin: 16rpx 0;
 }
 
 .header-modular .tips {
   font-size: 28rpx;
   opacity: 0.8;
   color: #ffffff;
-  flex: 1;
-}
-
-.header-modular .tips:nth-child(3) {
-  text-align: right;
 }
 
 .header-modular .tips:nth-child(2) {
-  text-align: center;
+  margin: 0 24rpx;
 }
 
 .card-modular {

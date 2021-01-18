@@ -1,3 +1,4 @@
+const jinrishici = require('../../utils/jinrishici.js')
 const APIKEY = "07031f32f8b44d27a64702dbbbafb509";// 填入你申请的KEY
 Page({
 
@@ -5,28 +6,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    jinrishici:[],//今日诗词
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    jinrishici.load(result => {
+      // 下面是处理逻辑示例
+      console.log(result)
+      this.setData({"jinrishici": result.data.content})
+    })
     this.getLocation()
   },
   //选择定位
   selectLocation() {
     var that = this
+    const selectLocation=wx.getStorageSync('selectLocation')
+    console.log(selectLocation,'444444444444444')
     wx.chooseLocation({
       success(res) {
         console.log(res,'============')
+        let location=res.longitude + "," + res.latitude
         that.setData({
-          location: res.longitude + "," + res.latitude
+          location: location
         })
+
+        wx.setStorageSync('selectLocation', location)
+        wx.setStorageSync('longitude', res.longitude)
+        wx.setStorageSync('latitude', res.latitude)
+
         that.getWeather()
         that.getCityByLoaction()
       }
       , fail() {
+        console.log('11111111')
         wx.getLocation({
           type: 'gcj02',
           fail() {
@@ -69,6 +84,15 @@ Page({
    */
   getLocation() {
     var that = this
+    const selectLocation=wx.getStorageSync('selectLocation')
+    if(selectLocation){
+      that.setData({
+        location: selectLocation
+      })
+      that.getWeather()
+      that.getCityByLoaction()
+      return false
+    }
     wx.getLocation({
       type: 'gcj02',
       success(res) {
@@ -163,13 +187,23 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    wx.request({
+    wx.request({ // 实况天气
       url: 'https://devapi.qweather.com/v7/weather/now?key=' + APIKEY + "&location=" + that.data.location,
       success(result) {
         var res = result.data
         //console.log(res)
         that.setData({
           now: res.now
+        })
+      }
+    })
+    wx.request({ // 空气质量实况
+      url: 'https://devapi.qweather.com/v7/air/now?key=' + APIKEY + "&location=" + that.data.location,
+      success(result) {
+        var res = result.data
+        console.log(res,'777777777777777777')
+        that.setData({
+          nowAir: res.now
         })
       }
     })
@@ -202,6 +236,7 @@ Page({
       }
     })
   },
+
   // 格式时间
   formatTime(date) {
     const year = date.getFullYear()

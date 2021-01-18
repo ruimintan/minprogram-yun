@@ -45,9 +45,18 @@ const formatEnMonth = (month) => {
   }
   return en_month
 }
+const formatAir=(data)=>{
+  if(data=='优'){
+    return 'you'
+  }
+  if(data=='良'){
+    return 'liang'
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
   getArticalDate: getArticalDate,
   formatEnMonth: formatEnMonth,
+  formatAir: formatAir,
 }

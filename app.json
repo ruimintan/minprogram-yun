@@ -16,7 +16,7 @@
       "selectedIconPath": "assets/images/icon/home_fill.png",
       "text": "首页"
     }, {
-      "pagePath": "pages/weather/weather",
+      "pagePath": "pages/logs/logs",
       "iconPath": "assets/images/icon/sun-cloudy-line.png",
       "selectedIconPath": "assets/images/icon/sun-cloudy-fill.png",
       "text": "天气"

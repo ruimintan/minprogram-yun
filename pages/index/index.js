@@ -93,15 +93,15 @@ Page({
    */
   getLocation() {
     var that = this
-    const selectLocation=wx.getStorageSync('selectLocation')
-    if(selectLocation){
-      that.setData({
-        location: selectLocation
-      })
-      that.getQweather()
-      that.getCityByLoaction()
-      return false
-    }
+    // const selectLocation=wx.getStorageSync('selectLocation')
+    // if(selectLocation){
+    //   that.setData({
+    //     location: selectLocation
+    //   })
+    //   that.getQweather()
+    //   that.getCityByLoaction()
+    //   return false
+    // }
     wx.getLocation({
       type: 'gcj02',
       success(res) {

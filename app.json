@@ -6,22 +6,7 @@
     "pages/history/history",
     "pages/logs/logs"
   ],
-  "tabBar": {
-    "color": "#999",
-    "selectedColor": "#000",
-    "borderStyle": "white",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "iconPath": "assets/images/icon/home.png",
-      "selectedIconPath": "assets/images/icon/home_fill.png",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "iconPath": "assets/images/icon/sun-cloudy-line.png",
-      "selectedIconPath": "assets/images/icon/sun-cloudy-fill.png",
-      "text": "天气"
-    }]
-  },
+
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",

@@ -29,11 +29,11 @@ page {
 
 /* 页面样式 */
 .header-modular {
-  height: 660rpx;
+  height: 360px;
   background-color: #64C8FA;
   background: linear-gradient(to bottom, #56CCF2, #2F80ED);
   position: relative;
-  padding: 30rpx;
+  padding: 20px;
 }
 
 .header-modular .bg-wave {
@@ -42,53 +42,57 @@ page {
   bottom: -2px;
   left: 0;
   right: 0;
-  height: 120rpx;
+  height: 70px;
   mix-blend-mode: screen;
 }
 
 .header-modular .location-wrap {
   color: #ffffff;
-  font-size: 28rpx;
+  font-size: 16px;
+  padding: 8px;
 }
 
 .header-modular .location-wrap .icon {
-  width: 28rpx;
-  height: 28rpx;
-  margin-right: 8rpx;
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  position: relative;
+  top: 2px;
 }
 
 .header-modular .tmp {
-  font-size: 150rpx;
+  font-size: 80px;
   color: #ffffff;
-  margin-left: 88px;
+  margin-left: 100px;
 }
 
 .header-modular .icon-weather {
-  width: 150rpx;
-  height: 150rpx;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  top: 16px;
 }
 .air{
   text-align: center;
 }
 .air .weathertext{
-  font-size: 40rpx;
-  opacity: 0.8;
+  font-size: 18px;
   color: #ffffff;
   margin-left: 24px;
 }
 .nowAir{
   color: #ffffff;
-  font-size: 28rpx;
+  font-size: 14px;
   display: inline-block;
-  padding: 0 6rpx;
-  border-radius: 6rpx;
-  margin-left: 24rpx;
+  padding: 0 4px 0 3px;
+  border-radius: 3px;
+  margin-left: 8px;
 }
 .icon-kongqi{
-  font-size: 28rpx;
+  font-size: 14px;
 }
 .aqi{
-  margin: 0 6rpx;
+  margin: 0 3px;
 }
 .jinrishici{
   position: absolute;
@@ -99,51 +103,52 @@ page {
   color: #ffffff;
   font-size: 16px;
   opacity: 0.8;
-  padding: 4px;
-  margin-top: 16px;
+  margin-top: 24px;
+  height: 48px;
+  line-height: 48px;
 }
 .header-modular .tips-wrap {
   text-align: center;
-  margin: 16rpx 0;
+  margin: 8px 0;
 }
 
 .header-modular .tips {
-  font-size: 28rpx;
+  font-size: 14px;
   opacity: 0.8;
   color: #ffffff;
 }
 
 .header-modular .tips:nth-child(2) {
-  margin: 0 24rpx;
+  margin: 0 10px;
 }
 
 .card-modular {
-  padding:0 30rpx;
-  margin-top: 30rpx;
+  padding:0 16px;
+  margin-top: 24px;
 }
 
 .card-modular>.title {
-  font-size: 40rpx;
+  font-size: 20px;
   font-weight: bold;
   position: relative;
-  margin-left: 14rpx;
-  margin-bottom: 16rpx;
+  margin-left: 8px;
+  margin-bottom: 8px;
 }
 
 .card-modular>.title::before {
-  content: "";
+  /* content: "";
   position: absolute;
   left: -14rpx;
   top: 10rpx;
   bottom: 10rpx;
   width: 8rpx;
   border-radius: 10rpx;
-  background-color: #2F80ED;
+  background-color: #2F80ED; */
 }
 
 .card-modular .card-wrap {
-  width: 690rpx;
-  border-radius: 18rpx;
+  /* width: 690rpx; */
+  border-radius: 6px;
   background-color: #ffffff;
   box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.2);
   overflow-x: auto;

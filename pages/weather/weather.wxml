@@ -7,6 +7,10 @@
 			<text class="title">{{City}} {{County}}</text>
 		</view>
 	</view>
+	<view class="updateCon" wx:if="{{updateTimeStr}}">
+		<text class="updateTime">更新于{{updateTimeStr}}之前</text>
+	</view>
+	<view class="updateCon" wx:else></view>
 	<view class="center">
 		<text class="tmp">{{now.temp}}°</text>
 		<image class="icon-weather" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{now.icon}}.png"></image>
@@ -28,8 +32,42 @@
 		<text>{{jinrishici}}</text>
 	</view>
 </view>
+
+<view class="card-modular" wx:if="{{now&&daily}}">
+	<view class="card-wrap">
+		<view class="day_card">
+			<view class="top_item">
+				<text>今天</text>
+				<text class="fr">{{today.tempMax}}°/ {{today.tempMin}}°</text>
+			</view>
+			<view class="bottom_item">
+				<text>{{now.text}}</text>
+				<image class="icon" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{now.icon}}.png"></image>
+			</view>
+		</view>
+		<view class="day_card">
+			<view class="top_item">
+				<text>明天</text>
+				<text class="fr">{{tomorrow.tempMax}}°/ {{tomorrow.tempMin}}°</text>
+			</view>
+			<view class="bottom_item">
+				<text>{{tomorrow.textDay}}</text>
+				<image class="icon" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{tomorrow.iconDay}}.png"></image>
+			</view>
+		</view>
+	</view>
+</view>
+
 <view class="card-modular " wx:if="{{hourly}}">
-	<view class="title">24小时预报</view>
+	<view class="title_con">
+		<text class="title1">24小时预报</text>
+		<view class="fr sun">
+			<text class="iconfont icon-richu"></text>	
+			<text class="suntxt">{{today.sunrise}}</text>	
+			<text class="iconfont icon-riluo"></text>		
+			<text class="suntxt">{{today.sunset}}</text>	
+		</view>
+	</view>
 	<view class="card-wrap">
 		<block wx:for="{{hourly}}" wx:key="index">
 			<view class="item hourly">
@@ -59,3 +97,19 @@
 		</block>
 	</view>
 </view>
+
+<view class="card-modular" wx:if="{{lifeDaily}}">
+	<view class="title">生活指数</view>
+	<view class='grid-item-container card-wrap'>
+		<block wx:for="{{lifeStyles}}" wx:key="index">
+			<view class='grid-item-child'>
+				<view class="center">
+					<text class="iconfont {{item.icon}}"></text>
+					<text class='grid-item-label category'>{{item.category}}</text>
+					<text class='grid-item-label name'>{{item.name}}</text>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
+

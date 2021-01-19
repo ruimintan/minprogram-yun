@@ -7,6 +7,104 @@ Page({
    */
   data: {
     jinrishici:[],//今日诗词
+    updateTimeStr:'',
+    lifeStyles:[
+      {
+        type: "8",
+        name:"舒适度",
+        icon:"icon-shushidu",
+      },
+      {
+        type: "9",
+        name:"感冒",
+        icon:"icon-ganmaozhishu",
+      },
+      {
+        type: "3",
+        name:"穿衣",
+        icon:"icon-chuanyi",
+      },
+      {
+        type: "1",
+        name:"运动",
+        icon:"icon-yundong",
+      },
+      {
+        type: "2",
+        name:"洗车",
+        icon:"icon-xiche",
+      },
+      {
+        type: "4",
+        name:"钓鱼",
+        icon:"icon-diaoyu",
+      },
+      {
+        type: "5",
+        name:"紫外线",
+        icon:"icon-ziwaixian",
+      },
+      {
+        type: "6",
+        name:"旅游",
+        icon:"icon-lvyou1",
+      },
+      {
+        type: "13",
+        name:"化妆",
+        icon:"icon-huazhuangpin",
+      },
+    ],
+    iconColor: [
+      'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
+    ],
+    iconStyle: [
+      {
+        "type":"success",
+        "size":30,
+        "color":"#32CD32"
+      },
+      {
+        "type": "success_no_circle",
+        "size": 30,
+        "color": "orange"
+      },
+      {
+        "type": "info",
+        "size": 30,
+        "color": "yellow"
+      },
+      {
+        "type": "warn",
+        "size": 30,
+        "color": "green"
+      },
+      {
+        "type": "waiting",
+        "size": 30,
+        "color": "rgb(0,255,255)"
+      },
+      {
+        "type": "cancel",
+        "size": 30,
+        "color": "blue"
+      },
+      {
+        "type": "download",
+        "size": 30,
+        "color": "purple"
+      },
+      {
+        "type": "search",
+        "size": 30,
+        "color": "#C4C4C4"
+      },
+      {
+        "type": "clear",
+        "size": 30,
+        "color": "red"
+      }
+    ]
   },
 
   /**
@@ -195,6 +293,14 @@ Page({
         that.setData({
           now: res.now
         })
+        that.setData({
+          updateTimeStr: that.formatUpdateTime(res.updateTime)
+        })
+        setTimeout(()=>{
+          that.setData({
+            updateTimeStr: ''
+          })
+        },4000)
       }
     })
     wx.request({ // 空气质量实况
@@ -230,9 +336,30 @@ Page({
           item.dateToString = that.formatTime(new Date(item.fxDate)).dailyToString
         })
         that.setData({
-          daily: res.daily
+          daily: res.daily,
+          today: res.daily[0],
+          tomorrow: res.daily[1],
         })
         wx.hideLoading()
+      }
+    })
+    wx.request({
+      url: 'https://devapi.qweather.com/v7/indices/1d?key=' + APIKEY + "&location=" + that.data.location + "&type=" + "1,2,3,4,5,6,8,9,13",
+      success(result) {
+        var res = result.data
+        console.log(res)
+        var daily=res.daily
+        that.data.lifeStyles.forEach(item=>{
+          daily.forEach(item1=>{
+            if(item.type===item1.type){
+              item.category=item1.category
+            }
+          })
+        })
+        that.setData({
+          lifeDaily: daily,
+          lifeStyles: that.data.lifeStyles
+        })
       }
     })
   },
@@ -252,6 +379,18 @@ Page({
       daily: [month, day].map(this.formatNumber).join("-"),
       dailyToString: isToday ? "今天" : weekArray[date.getDay()]
     }
+  },
+  formatUpdateTime(data){
+    let updateTime=data
+    let timeGapMS = new Date().getTime()-new Date(updateTime).getTime()
+    let timeGapS = timeGapMS/1000
+    let str=''
+    if(timeGapS<60){
+      str = timeGapS + '秒'        
+    }else{
+      str = Math.floor(timeGapS/60) + '分钟'
+    }
+    return str
   },
   // 补零
   formatNumber(n) {

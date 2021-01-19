@@ -28,12 +28,21 @@
 		<text class="tips">湿度 {{now.humidity}}%</text>
 		<text class="tips">气压 {{now.pressure}}hPa</text>
 	</view>
-	<view class="jinrishici">
+	<view class="jinrishici" wx:if="{{jinrishici}}">
 		<text>{{jinrishici}}</text>
 	</view>
 </view>
 
 <view class="card-modular" wx:if="{{now&&daily}}">
+	<view class="summary" wx:if="{{summary}}">
+		<text>{{summary}}</text>
+		<view class="fr sun">
+			<text class="iconfont icon-richu"></text>	
+			<text class="suntxt">{{today.sunrise}}</text>	
+			<text class="iconfont icon-riluo"></text>		
+			<text class="suntxt">{{today.sunset}}</text>	
+		</view>
+	</view>
 	<view class="card-wrap">
 		<view class="day_card">
 			<view class="top_item">
@@ -59,15 +68,7 @@
 </view>
 
 <view class="card-modular " wx:if="{{hourly}}">
-	<view class="title_con">
-		<text class="title1">24小时预报</text>
-		<view class="fr sun">
-			<text class="iconfont icon-richu"></text>	
-			<text class="suntxt">{{today.sunrise}}</text>	
-			<text class="iconfont icon-riluo"></text>		
-			<text class="suntxt">{{today.sunset}}</text>	
-		</view>
-	</view>
+	<view class="title">24小时预报</view>
 	<view class="card-wrap">
 		<block wx:for="{{hourly}}" wx:key="index">
 			<view class="item hourly">

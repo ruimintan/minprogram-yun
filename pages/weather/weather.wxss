@@ -116,6 +116,11 @@ page {
   height: 48px;
   line-height: 48px;
 }
+.summary{
+  padding: 0px 8px 12px;
+  font-size: 14px;
+  color: #666666;
+}
 .header-modular .tips-wrap {
   text-align: center;
   margin: 12px 0;
@@ -143,20 +148,9 @@ page {
   margin-left: 8px;
   margin-bottom: 8px;
 }
-.title_con{
-  position: relative;
-  margin-left: 8px;
-  margin-bottom: 8px;
-}
-.title1{
-  font-size: 20px;
-  font-weight: bold;
-}
 .sun{
   font-size: 12px;
   color: #999;
-  position: relative;
-  top: 8px;
 }
 .sun>.iconfont{
   margin-right: 2px;

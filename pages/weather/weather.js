@@ -343,7 +343,7 @@ Page({
         wx.hideLoading()
       }
     })
-    wx.request({
+    wx.request({ // 获取生活指数
       url: 'https://devapi.qweather.com/v7/indices/1d?key=' + APIKEY + "&location=" + that.data.location + "&type=" + "1,2,3,4,5,6,8,9,13",
       success(result) {
         var res = result.data
@@ -359,6 +359,17 @@ Page({
         that.setData({
           lifeDaily: daily,
           lifeStyles: that.data.lifeStyles
+        })
+      }
+    })
+    wx.request({ // 获取分钟级降水
+      url: 'https://devapi.qweather.com/v7/minutely/5m?key=' + APIKEY + "&location=" + that.data.location,
+      success(result) {
+        var res = result.data
+        // console.log(res)
+        that.setData({
+          minutely: res.minutely,
+          summary: res.summary
         })
       }
     })

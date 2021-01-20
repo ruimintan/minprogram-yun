@@ -4,7 +4,8 @@
     "pages/articals/articals",
     "pages/weather/weather",
     "pages/history/history",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/7days-line/7days-line"
   ],
 
   "window":{

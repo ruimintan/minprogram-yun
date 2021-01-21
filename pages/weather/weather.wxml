@@ -36,12 +36,6 @@
 <view class="card-modular" wx:if="{{now&&daily}}">
 	<view class="summary" wx:if="{{summary}}">
 		<text>{{summary}}</text>
-		<view class="fr sun">
-			<text class="iconfont icon-richu"></text>	
-			<text class="suntxt">{{today.sunrise}}</text>	
-			<text class="iconfont icon-riluo"></text>		
-			<text class="suntxt">{{today.sunset}}</text>	
-		</view>
 	</view>
 	<view class="card-wrap">
 		<view class="day_card">
@@ -68,7 +62,15 @@
 </view>
 
 <view class="card-modular " wx:if="{{hourly}}">
-	<view class="title">24小时预报</view>
+	<view class="title24">
+		<view class="title fl">24小时预报</view>
+		<view class="fr sun">
+			<text class="iconfont icon-richu"></text>	
+			<text class="suntxt">{{today.sunrise}}</text>	
+			<text class="iconfont icon-riluo"></text>		
+			<text class="suntxt">{{today.sunset}}</text>	
+		</view>
+	</view>
 	<view class="card-wrap">
 		<block wx:for="{{hourly}}" wx:key="index">
 			<view class="item hourly">

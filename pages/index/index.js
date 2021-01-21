@@ -63,45 +63,12 @@ Page({
       en_month: util.formatEnMonth(util.getArticalDate().month),
     })
     this.getDataList()
-    this.getSentence()
-    this.getArtical()
-    this.getBing()
-    // this.getLocation()
-    this.getHistoryToday()
   },
-  // getWeather: function(){
-  //   var that = this;
-  //   var myAmapFun = new amapFile.AMapWX({key:'7fc877b9234e8ec91b38db35f3816e09'});
-  //   myAmapFun.getWeather({
-  //     success: function(data){ //成功回调      
-  //       that.setData({
-  //         city:data.liveData.city,
-  //         nowWeather:data.liveData.weather,
-  //         temperature:data.liveData.temperature,
-  //         // liveData: data.liveData
-  //       })  
-  //     },
-  //     fail: function(info){ //失败回调     
-  //       console.log(info)   
-  //       that.getLocation() 
-  //       wx.showToast({ title: '天气信息获取失败！' })
-  //     }
-  //   })
-  // },
    /**
    * 获取定位
    */
   getLocation() {
     var that = this
-    // const selectLocation=wx.getStorageSync('selectLocation')
-    // if(selectLocation){
-    //   that.setData({
-    //     location: selectLocation
-    //   })
-    //   that.getQweather()
-    //   that.getCityByLoaction()
-    //   return false
-    // }
     wx.getLocation({
       type: 'gcj02',
       success(res) {
@@ -222,76 +189,41 @@ Page({
       }
     })
   },
-  getDataList:function(){ //获取ONE
+  getDataList:function(){
     let that = this;
     wx.showLoading({
       "title": "加载中"
     });                  
-    WXAPI.getOneList().then(function (res) {
+    WXAPI.getOneList().then(function (res) { //获取ONE
       if (res.code == 200) {
         that.setData({
           dataList: res.data,
         })
       }
-      wx.hideLoading()
-    }).catch(function (e) {
-      console.log(e)
-    }) 
-  },
-  getSentence:function(){ // 获取每日诗词
-    var that = this
-    wx.showLoading({
-      title: '加载中',
     })
-    WXAPI.getHitokoto('i').then(function (res) {
+    WXAPI.getHitokoto('i').then(function (res) { // 获取每日诗词
       console.log(res)
       that.setData({
         sentence: res,
       })
-      wx.hideLoading()
-    }).catch(function (e) {
-      console.log(e)
     })
-  },
-  getBing:function(){ // 获取bing壁纸
-    var that = this
-    wx.showLoading({
-      title: '加载中',
-    })
-    WXAPI.getBingPic().then(function (res) {
+    WXAPI.getBingPic().then(function (res) { // 获取bing壁纸
       console.log(res)
       if (res.code == 200) {
         that.setData({
           bingUrl: res.data,
         })
       }
-      wx.hideLoading()
-    }).catch(function (e) {
-      console.log(e)
     })
-  },
-  getArtical:function(){ // 获取每日一文
-    var that = this
-    wx.showLoading({
-      title: '加载中',
-    })
+    // 获取每日一文
     const data=that.data.articalDate
     WXAPI.getTodayArtical(data).then(function (res) {
       console.log(res)
         that.setData({
           artical: res.data,
         })
-      wx.hideLoading()
-    }).catch(function (e) {
-      console.log(e)
     })
-  },
-
-  getHistoryToday:function(){ // 获取历史上的今天
-    var that = this
-    wx.showLoading({
-      title: '加载中',
-    })
+    // 获取历史上的一天
     WXAPI.getHistoryToday('json').then(function (res) {
       console.log(res)
       if(res.result){

@@ -1,11 +1,80 @@
 const jinrishici = require('../../utils/jinrishici.js')
 const APIKEY = "07031f32f8b44d27a64702dbbbafb509";// 填入你申请的KEY
-Page({
+import * as echarts from '../../ec-canvas/echarts';
 
-  /**
-   * 页面的初始数据
-   */
+function setOption(chart,dataMax,dataMin){
+  console.log(chart,dataMax,dataMin,'888888888888')
+  const option = {
+    color: ["#FB7821", "#1B9DFF"],
+    grid: {
+      containLabel: true,
+      x: -10,
+      top: 15,
+      bottom: 15,
+      width: 540,
+      height:60
+    },
+    tooltip: {
+      show: true,
+      trigger: 'axis'
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      show: false,
+  },
+  yAxis: {
+    show: false
+  },
+  series: [{
+    itemStyle: {
+      normal: {
+        label: {
+          show: true,
+          position: [-5, -11],
+          textStyle: {
+            color: 'black'
+          },
+          formatter: function (params) {
+            return params.value + '°'
+          }
+        }
+      }
+    },
+    type: 'line',
+    symbolSize: '4',
+    smooth: true,
+    data:dataMax,
+  }, {
+    itemStyle: {
+      normal: {
+        label: {
+          show: true,
+          position: [-5, 7],
+          textStyle: {
+            color: 'black'
+          },
+          formatter: function (params) {
+            return params.value + '°'
+          }
+        }
+      }
+    },
+    type: 'line',
+    symbolSize: '4',
+    smooth: true,
+    data: dataMin,
+  }
+  ]
+  };
+  chart.setOption(option)
+}
+
+Page({
   data: {
+    y7data1:[], 
+    y7data2:[1, -2, 2, 5, 3, 2, 0], 
+    forecast7Days:[1, -2, 2, 5, 3, 2, 0], 
     jinrishici:[],//今日诗词
     updateTimeStr:'',
     lifeStyles:[
@@ -55,56 +124,12 @@ Page({
         icon:"icon-huazhuangpin",
       },
     ],
-    iconColor: [
-      'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
-    ],
-    iconStyle: [
-      {
-        "type":"success",
-        "size":30,
-        "color":"#32CD32"
-      },
-      {
-        "type": "success_no_circle",
-        "size": 30,
-        "color": "orange"
-      },
-      {
-        "type": "info",
-        "size": 30,
-        "color": "yellow"
-      },
-      {
-        "type": "warn",
-        "size": 30,
-        "color": "green"
-      },
-      {
-        "type": "waiting",
-        "size": 30,
-        "color": "rgb(0,255,255)"
-      },
-      {
-        "type": "cancel",
-        "size": 30,
-        "color": "blue"
-      },
-      {
-        "type": "download",
-        "size": 30,
-        "color": "purple"
-      },
-      {
-        "type": "search",
-        "size": 30,
-        "color": "#C4C4C4"
-      },
-      {
-        "type": "clear",
-        "size": 30,
-        "color": "red"
-      }
-    ]
+    ec: {
+      // 将 lazyLoad 设为 true 后，需要手动初始化图表
+      lazyLoad: true,
+      isLoaded: false,
+      isDisposed: false
+    },
   },
 
   /**
@@ -326,7 +351,7 @@ Page({
         })
       }
     })
-    wx.request({
+    wx.request({ // 获取7天预报
       url: 'https://devapi.qweather.com/v7/weather/7d?key=' + APIKEY + "&location=" + that.data.location,
       success(result) {
         var res = result.data
@@ -335,6 +360,7 @@ Page({
           item.date = that.formatTime(new Date(item.fxDate)).daily
           item.dateToString = that.formatTime(new Date(item.fxDate)).dailyToString
         })
+        that.format7Days(res.daily)
         that.setData({
           daily: res.daily,
           today: res.daily[0],
@@ -374,7 +400,54 @@ Page({
       }
     })
   },
+    // 点击按钮后初始化图表
+  init: function () {
+    const that=this
+    this.ecComponent = this.selectComponent('#mychart-dom-line');
+    const dataMax=that.data.y7data1
+    const dataMin=that.data.y7data2
+    console.log(that.data.y7data1,'555555555555555')
+    this.ecComponent.init((canvas, width, height, dpr) => {
+      // 获取组件的 canvas、width、height 后的回调函数
+      // 在这里初始化图表
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height,
+        devicePixelRatio: dpr // new
+      });
+      setOption(chart,dataMax,dataMin);
 
+      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
+      this.chart = chart;
+
+      this.setData({
+        isLoaded: true,
+        isDisposed: false
+      });
+
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return chart;
+    });
+  },
+  format7Days(data){
+    var that = this
+    console.log(data,'000000000000000')
+    let tempMin=[]
+    let tempMax=[]
+    data.forEach(function (item) {
+      tempMin.push(item.tempMin)
+      tempMax.push(item.tempMax)
+    })
+    that.setData({
+      y7data1: tempMax,
+      y7data2: tempMin,
+    },
+    ()=>{
+      that.init()
+    })
+    // that.initCharts()
+
+  },
   // 格式时间
   formatTime(date) {
     const year = date.getFullYear()
@@ -412,14 +485,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**

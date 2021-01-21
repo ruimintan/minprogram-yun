@@ -240,4 +240,19 @@ Page({
       that.getHistoryToday()
     })
   },
+  getHistoryToday(){
+    let that = this;
+    WXAPI.getHistoryToday('json').then(function (res) {
+      console.log(res)
+      if(res.result){
+        that.setData({
+          resultToday: res.today,
+          historyTodayData: res.result,
+        })
+        wx.hideLoading()
+      }   
+    }).catch(function (e) {
+      console.log(e)
+    })
+  }
 })

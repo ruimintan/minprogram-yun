@@ -32,7 +32,6 @@
 		<text>{{jinrishici}}</text>
 	</view>
 </view>
-
 <view class="card-modular" wx:if="{{now&&daily}}">
 	<view class="summary" wx:if="{{summary}}">
 		<text>{{summary}}</text>
@@ -86,18 +85,30 @@
 
 <view class="card-modular" wx:if="{{daily}}">
 	<view class="title">7天预报</view>
-	<view class="card-wrap">
-		<block wx:for="{{daily}}" wx:key="index">
-			<view class="item daily">
-				<view>{{item.dateToString}}</view>
-				<view class="text-gray">{{item.date}}</view>
-				<image class="icon" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconDay}}.png"></image>
-				<view class="text-primary ">{{item.tempMin}}°~{{item.tempMax}}°</view>
-				<image class="icon" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconNight}}.png"></image>
-				<view>{{item.windDirDay}}</view>
-				<view class="text-gray">{{item.windScaleDay}}级</view>
+	<view class="dlB">
+		<scroll-view scroll-x="true" class="body-module">
+			<view class="body-weather-line" wx:if="{{y7data1.length>0}}">
+				<ec-canvas wx:if="{{!isDisposed}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
 			</view>
-		</block>
+			<block wx:for="{{daily}}" wx:key="index">
+				<view class="item daily body-item">
+					<view class="day-font">{{item.dateToString}}</view>
+					<view class="text-gray day-time">{{item.date}}</view>
+					<view class="weather-font">{{ item.textDay }}</view>
+					<view class="weather-image">
+						<image class="icon img" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconDay}}.png"></image>
+					</view>		
+					<view class="weather-line"></view>		
+					<!-- <view class="text-primary ">{{item.tempMin}}°~{{item.tempMax}}°</view> -->
+					<view class="weather-image">
+						<image class="icon img" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconNight}}.png"></image>
+					</view>	
+					<view class="weather-font">{{ item.textNight }}</view>
+					<view  class="weather-font">{{item.windDirDay}}</view>
+					<view class="text-gray weather-font">{{item.windScaleDay}}级</view>
+				</view>
+			</block>	
+		</scroll-view>
 	</view>
 </view>
 

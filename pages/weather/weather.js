@@ -3,7 +3,6 @@ const APIKEY = "07031f32f8b44d27a64702dbbbafb509";// 填入你申请的KEY
 import * as echarts from '../../ec-canvas/echarts';
 
 function setOption(chart,dataMax,dataMin){
-  console.log(chart,dataMax,dataMin,'888888888888')
   const option = {
     color: ["#FB7821", "#1B9DFF"],
     grid: {
@@ -126,12 +125,64 @@ Page({
         icon:"icon-huazhuangpin",
       },
     ],
+    airDetails:[
+      {
+        name:'pm10',
+        label:'PM10',
+        value:''
+      },
+      {
+        name:'pm2p5',
+        label:'PM2.5',
+        value:''
+      },
+      {
+        name:'no2',
+        label:'NO2',
+        value:''
+      },
+      {
+        name:'so2',
+        label:'SO2',
+        value:''
+      },
+      {
+        name:'co',
+        label:'CO',
+        value:''
+      },
+      {
+        name:'o3',
+        label:'O3',
+        value:''
+      },
+    ],
     ec: {
       // 将 lazyLoad 设为 true 后，需要手动初始化图表
       lazyLoad: true,
       isLoaded: false,
       isDisposed: false
     },
+    status:false
+  },
+
+openAirDetail(){
+  this.setData({
+    status: true
+  })
+},
+// 解决遮罩层的滚动穿透问题
+catchTouch(){},
+// 点击遮罩层关闭弹框
+airDetail(e) {
+    // console.log(111111, e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id;
+    if (id == 1) {
+      this.setData({
+        status: false
+      })
+    }
+    // console.log('this.data.status--->', this.data.status)
   },
 
   /**
@@ -140,7 +191,6 @@ Page({
   onLoad: function (options) {
     jinrishici.load(result => {
       // 下面是处理逻辑示例
-      console.log(result)
       this.setData({"jinrishici": result.data.content})
     })
     this.getLocation()
@@ -148,25 +198,16 @@ Page({
   //选择定位
   selectLocation() {
     var that = this
-    const selectLocation=wx.getStorageSync('selectLocation')
-    console.log(selectLocation,'444444444444444')
     wx.chooseLocation({
       success(res) {
-        console.log(res,'============')
         let location=res.longitude + "," + res.latitude
         that.setData({
           location: location
         })
-
-        wx.setStorageSync('selectLocation', location)
-        wx.setStorageSync('longitude', res.longitude)
-        wx.setStorageSync('latitude', res.latitude)
-
         that.getWeather()
         that.getCityByLoaction()
       }
       , fail() {
-        console.log('11111111')
         wx.getLocation({
           type: 'gcj02',
           fail() {
@@ -209,15 +250,6 @@ Page({
    */
   getLocation() {
     var that = this
-    // const selectLocation=wx.getStorageSync('selectLocation')
-    // if(selectLocation){
-    //   that.setData({
-    //     location: selectLocation
-    //   })
-    //   that.getWeather()
-    //   that.getCityByLoaction()
-    //   return false
-    // }
     wx.getLocation({
       type: 'gcj02',
       success(res) {
@@ -333,10 +365,13 @@ Page({
     wx.request({ // 空气质量实况
       url: 'https://devapi.qweather.com/v7/air/now?key=' + APIKEY + "&location=" + that.data.location,
       success(result) {
-        var res = result.data
-        console.log(res,'777777777777777777')
+        var res = result.data 
+        that.data.airDetails.forEach(item=>{
+          item.value=res.now[item.name]
+        })
         that.setData({
-          nowAir: res.now
+          nowAir: res.now,
+          airDetails:that.data.airDetails
         })
       }
     })
@@ -375,7 +410,6 @@ Page({
       url: 'https://devapi.qweather.com/v7/indices/1d?key=' + APIKEY + "&location=" + that.data.location + "&type=" + "1,2,3,4,5,6,8,9,13",
       success(result) {
         var res = result.data
-        console.log(res)
         var daily=res.daily
         that.data.lifeStyles.forEach(item=>{
           daily.forEach(item1=>{
@@ -394,7 +428,6 @@ Page({
       url: 'https://devapi.qweather.com/v7/minutely/5m?key=' + APIKEY + "&location=" + that.data.location,
       success(result) {
         var res = result.data
-        // console.log(res)
         that.setData({
           minutely: res.minutely,
           summary: res.summary
@@ -408,7 +441,6 @@ Page({
     this.ecComponent = this.selectComponent('#mychart-dom-line');
     const dataMax=that.data.y7data1
     const dataMin=that.data.y7data2
-    console.log(that.data.y7data1,'555555555555555')
     this.ecComponent.init((canvas, width, height, dpr) => {
       // 获取组件的 canvas、width、height 后的回调函数
       // 在这里初始化图表
@@ -433,7 +465,6 @@ Page({
   },
   format7Days(data){
     var that = this
-    console.log(data,'000000000000000')
     let tempMin=[]
     let tempMax=[]
     data.forEach(function (item) {

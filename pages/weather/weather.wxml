@@ -17,7 +17,8 @@
 	</view>
 	<view class="air">
 		<text class="weathertext">{{now.text}}</text>
-		<view class="nowAir {{utils.formatAir(nowAir.category)}}">
+		<!-- 空气质量指数 -->
+		<view class="nowAir {{utils.formatAir(nowAir.category)}}" bindtap="openAirDetail">
 			<text class="iconfont icon-kongqi"></text>
 			<text class="aqi">{{nowAir.aqi}}</text>
 			<text class="category">{{nowAir.category}}</text>
@@ -32,6 +33,35 @@
 		<text>{{jinrishici}}</text>
 	</view>
 </view>
+<!-- 空气质量弹窗 -->
+<view class="mask" catchtap="airDetail" data-id="1" wx:if="{{status}}" catchtouchmove="catchTouch">
+	<view class="air_dialog" catchtap="airDetail" data-id="2">
+		<view class="air_dialog_img">
+			<image class="airImg" src="../../assets/images/pic.jpg"></image>
+			<view class="aqiDetails">
+				<view class="aqiText">空气质量指数</view>
+				<view class="aqi">{{nowAir.aqi}}</view>
+				<view class="category">
+					<text class="nowAirTxt {{utils.formatAir(nowAir.category)}}">{{nowAir.category}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="dialog_body">
+			<view class='grid-item-container card-wrap'>
+				<block wx:for="{{airDetails}}" wx:key="index">
+					<view class='grid-item-child'>
+						<view class="center">
+							<text class='grid-item-label value'>{{item.value}}</text>
+							<text class='grid-item-label name'>{{item.label}}</text>
+						</view>
+					</view>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>
+
+<!-- 降水及今明日天气 -->
 <view class="card-modular" wx:if="{{now&&daily}}">
 	<view class="summary" wx:if="{{summary}}">
 		<text>{{summary}}</text>
@@ -59,7 +89,7 @@
 		</view>
 	</view>
 </view>
-
+<!-- 24小时预报 -->
 <view class="card-modular " wx:if="{{hourly}}">
 	<view class="title24">
 		<view class="title fl">24小时预报</view>
@@ -83,7 +113,7 @@
 		</block>
 	</view>
 </view>
-
+<!-- 7日预报 -->
 <view class="card-modular" wx:if="{{daily}}">
 	<view class="title">7天预报</view>
 	<view class="dlB">
@@ -111,7 +141,7 @@
 		</scroll-view>
 	</view>
 </view>
-
+<!-- 生活指数 -->
 <view class="card-modular" wx:if="{{lifeDaily}}">
 	<view class="title">生活指数</view>
 	<view class='grid-item-container card-wrap'>

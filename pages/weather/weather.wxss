@@ -89,7 +89,7 @@ page {
   color: #ffffff;
   font-size: 14px;
   display: inline-block;
-  padding: 0 5px 0 3px;
+  padding: 2px 5px 2px 3px;
   border-radius: 3px;
   margin-left: 8px;
 }
@@ -405,7 +405,39 @@ ec-canvas {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
   }
-  
+  .life_dialog {
+    width: 260px;
+    background-color: #fff;
+    position: fixed;
+    top: calc(50vh - 174px);
+    left: calc(50vw - 130px);
+    border-radius: 4px;
+  }
+  .life_dialog_img{
+    height: 195px;
+  }
+  .life_dialog .lifeImg {
+    width: 260px;
+    height: 195px;
+    display: inline-block;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .dialog_body_life{
+    padding:16px;
+  }
+  .dialog_body_life .life_name{
+    font-size: 12px;
+  }
+  .dialog_body_life .life_category{
+    font-size: 18px;
+    color: #333333;
+  }
+  .dialog_body_life .life_text{
+    font-size: 14px;
+    color: #666666;
+    margin: 8px 0;
+  }
   .dialog_body {
     height: 116px;
     border-bottom-left-radius: 4px;

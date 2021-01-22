@@ -163,12 +163,21 @@ Page({
       isLoaded: false,
       isDisposed: false
     },
-    status:false
+    status:false,
+    showLife:false,
   },
 
-openAirDetail(){
+openAirDetail(){ // 打开空气质量弹窗
   this.setData({
     status: true
+  })
+},
+openLifeStyle(event){ // 打开生活指数弹窗
+  console.log(event)
+  const currentList = event.currentTarget.dataset.list
+  this.setData({
+    showLife: true,
+    currentList: currentList,
   })
 },
 // 解决遮罩层的滚动穿透问题
@@ -182,8 +191,12 @@ airDetail(e) {
         status: false
       })
     }
-    // console.log('this.data.status--->', this.data.status)
-  },
+    if (id == 3) {
+      this.setData({
+        showLife: false
+      })
+    }
+},
 
   /**
    * 生命周期函数--监听页面加载
@@ -415,6 +428,7 @@ airDetail(e) {
           daily.forEach(item1=>{
             if(item.type===item1.type){
               item.category=item1.category
+              item.text=item1.text
             }
           })
         })

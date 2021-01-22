@@ -146,7 +146,7 @@
 	<view class="title">生活指数</view>
 	<view class='grid-item-container card-wrap'>
 		<block wx:for="{{lifeStyles}}" wx:key="index">
-			<view class='grid-item-child'>
+			<view class='grid-item-child' data-list="{{item}}" bindtap="openLifeStyle">
 				<view class="center">
 					<text class="iconfont {{item.icon}}"></text>
 					<text class='grid-item-label category'>{{item.category}}</text>
@@ -155,5 +155,18 @@
 			</view>
 		</block>
 	</view>
+	<!-- 生活指数弹窗 -->
+<view class="mask" catchtap="airDetail" data-id="3" wx:if="{{showLife}}" catchtouchmove="catchTouch">
+	<view class="life_dialog" catchtap="airDetail" data-id="4">
+		<view class="life_dialog_img">
+			<image class="lifeImg" src="../../assets/images/pic2.jpg"></image>
+		</view>
+		<view class="dialog_body_life">
+			<view class="life_name">{{currentList.name}}指数</view>
+			<view class="life_category">{{currentList.category}}</view>
+			<view class="life_text">{{currentList.text}}</view>
+		</view>
+	</view>
+</view>
 </view>
 

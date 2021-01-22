@@ -23,10 +23,6 @@ page {
   background-color: #a73208;
 }
 
-.mb-32{
-  margin-bottom: 32rpx;
-}
-
 /* 页面样式 */
 .header-modular {
   height: 360px;
@@ -183,9 +179,12 @@ page {
 .day_card +.day_card{
   border-left:1px solid #f1f1f1;
 }
+.bottom_item{
+  margin-top: 4px;
+}
 .bottom_item .icon{
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   float: right;
 }
 .card-modular .card-wrap .item {
@@ -198,20 +197,6 @@ page {
 .card-modular .card-wrap .item.hourly{
   width: 138rpx;
 } 
-
-.card-modular .card-wrap .item .icon {
-  width: 60rpx;
-  height: 60rpx;
-  margin: 64rpx 0;
-}
-
-.card-modular .card-wrap .item .text-gray {
-  color: gray;
-}
-
-.card-modular .card-wrap .item .text-primary {
-  color: #2F80ED;
-}
 
  /*
   九宫格容器布局样式
@@ -337,6 +322,11 @@ ec-canvas {
     font-size: 28rpx;
     text-align: center;
   }
+  .temp-font{
+    height: 28px;
+    line-height: 28px;
+    color: #333333;
+  }
   .weather-image {
     height: 60rpx;
     display: -webkit-box;
@@ -348,4 +338,12 @@ ec-canvas {
   .weather-image .iconImg {
     width: 60rpx;
     height: 60rpx;
+  }
+  .hourly-image {
+    height: 80rpx;
+  }
+  .hourly-image .iconImg{
+    width: 60rpx;
+    height: 60rpx;
+    margin-top:10rpx;
   }

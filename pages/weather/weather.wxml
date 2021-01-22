@@ -73,11 +73,12 @@
 	<view class="card-wrap">
 		<block wx:for="{{hourly}}" wx:key="index">
 			<view class="item hourly">
-				<view class="text-gray">{{item.time}}</view>
-				<image class="icon" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.icon}}.png"></image>
-				<view class="text-primary mb-32">{{item.temp}}°</view>
-				<view>{{item.windDir}}</view>
-				<view class="text-gray">{{item.windScale}}级</view>
+				<view class="day-time">{{item.time}}</view>
+				<!-- <view class="weather-font">{{item.text}}</view> -->
+				<view class="hourly-image">
+					<image class="iconImg" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.icon}}.png"></image>
+				</view>	
+				<view class="temp-font">{{item.temp}}°</view>
 			</view>
 		</block>
 	</view>
@@ -93,13 +94,12 @@
 			<block wx:for="{{daily}}" wx:key="index">
 				<view class="item body-item">
 					<view class="day-font">{{item.dateToString}}</view>
-					<view class="text-gray day-time">{{item.date}}</view>
+					<view class="day-time">{{item.date}}</view>
 					<view class="weather-font">{{ item.textDay }}</view>
 					<view class="weather-image">
 						<image class="iconImg" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconDay}}.png"></image>
 					</view>		
 					<view class="weather-line"></view>		
-					<!-- <view class="text-primary ">{{item.tempMin}}°~{{item.tempMax}}°</view> -->
 					<view class="weather-image">
 						<image class="iconImg" src="https://ruinmint.gitee.io/imist/miniprograme/images/weather_icon/{{item.iconNight}}.png"></image>
 					</view>	

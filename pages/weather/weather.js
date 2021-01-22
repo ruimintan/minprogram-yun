@@ -8,10 +8,10 @@ function setOption(chart,dataMax,dataMin){
     grid: {
       containLabel: true,
       x: -10,
-      top: 40,
-      bottom: 40,
+      top: 32,
+      bottom: 24,
       width: 540,
-      height:100
+      // height:60
     },
     tooltip: {
       show: true,
@@ -50,7 +50,7 @@ function setOption(chart,dataMax,dataMin){
       normal: {
         label: {
           show: true,
-          position: [-4, 10],
+          position: [-4, 8],
           textStyle: {
             color: '#333333'
           },

@@ -198,9 +198,7 @@ page {
 .card-modular .card-wrap .item.hourly{
   width: 138rpx;
 } 
-.card-modular .card-wrap .item.daily{
-  width: 172.5rpx;
-}
+
 .card-modular .card-wrap .item .icon {
   width: 60rpx;
   height: 60rpx;
@@ -285,7 +283,7 @@ ec-canvas {
   }
   .dlB {
     width: 100%;
-    height: 320px;
+    height: 390px;
     overflow: hidden;
     margin-top: 20rpx;
     border-radius: 6px;
@@ -296,30 +294,33 @@ ec-canvas {
   
   .body-module {
     width: 100%;
-    height: 320px;
+    height: 390px;
     position: relative;
     white-space: nowrap;
+    padding:8px 0;
   }
   
   .body-weather-line {
     position: absolute;
     width: 560px;
-    height: 80px;
+    height: 140px;
     left: 26px;
     top: 200rpx;
     z-index: 1;
   }
+  .weather-line {
+    height: 140px;
+  }
   .body-item {
     width: 84px;
-    border-right: 1px solid #f3f3f3;
+    /* border-right: 1px solid #f3f3f3; */
     display: inline-block;
   }
   .day-font {
-    height: 50rpx;
-    line-height: 50rpx;
     color: #3a3a3b;
-    font-size: 28rpx;
-    font-weight: bold;
+    font-size: 18px;
+    height: 28px;
+    line-height: 28px;
     text-align: center;
   }
   .day-time {
@@ -332,22 +333,19 @@ ec-canvas {
   .weather-font {
     height: 50rpx;
     line-height: 50rpx;
-    color: #3a3a3b;
+    color: #666666;
     font-size: 28rpx;
     text-align: center;
   }
   .weather-image {
-    height: 50rpx;
+    height: 60rpx;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
     justify-content: center;
   }
   
-  .weather-image .img {
-    width: 50rpx;
-    height: 50rpx;
-  }
-  .weather-line {
-    height: 100px;
+  .weather-image .iconImg {
+    width: 60rpx;
+    height: 60rpx;
   }

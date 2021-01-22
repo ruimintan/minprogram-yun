@@ -9,10 +9,10 @@ function setOption(chart,dataMax,dataMin){
     grid: {
       containLabel: true,
       x: -10,
-      top: 15,
-      bottom: 15,
+      top: 40,
+      bottom: 40,
       width: 540,
-      height:60
+      height:100
     },
     tooltip: {
       show: true,
@@ -31,9 +31,9 @@ function setOption(chart,dataMax,dataMin){
       normal: {
         label: {
           show: true,
-          position: [-5, -11],
+          position: [-4, -12],
           textStyle: {
-            color: 'black'
+            color: '#333333'
           },
           formatter: function (params) {
             return params.value + '°'
@@ -42,17 +42,18 @@ function setOption(chart,dataMax,dataMin){
       }
     },
     type: 'line',
-    symbolSize: '4',
-    smooth: true,
+    symbol: "circle",
+    symbolSize: 5,
+    // smooth: true,
     data:dataMax,
   }, {
     itemStyle: {
       normal: {
         label: {
           show: true,
-          position: [-5, 7],
+          position: [-4, 10],
           textStyle: {
-            color: 'black'
+            color: '#333333'
           },
           formatter: function (params) {
             return params.value + '°'
@@ -61,8 +62,9 @@ function setOption(chart,dataMax,dataMin){
       }
     },
     type: 'line',
-    symbolSize: '4',
-    smooth: true,
+    symbol: "circle",
+    symbolSize: 5,
+    // smooth: true,
     data: dataMin,
   }
   ]
@@ -460,7 +462,7 @@ Page({
     const isToday = date.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)
     return {
       hourly: [hour, minute].map(this.formatNumber).join(":"),
-      daily: [month, day].map(this.formatNumber).join("-"),
+      daily: [month, day].map(this.formatNumber).join("/"),
       dailyToString: isToday ? "今天" : weekArray[date.getDay()]
     }
   },

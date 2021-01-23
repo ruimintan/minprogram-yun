@@ -168,6 +168,18 @@ page{
   height: 60px;
   width: 80px;
 }
+.en_content{
+  color: #000;
+  font-size: 18px;
+}
+.en_note{
+  font-size: 16px;
+  margin: 8px 0;
+}
+.en_source{
+  font-size: 12px;
+  color: #999;
+}
 .center{
   text-align: center;
 }

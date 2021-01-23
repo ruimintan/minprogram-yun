@@ -27,16 +27,18 @@
     </view>
   </view>
 </view>
+
 <view class="item">
   <view class="text_card">
     <view class="center">
-      <image mode="widthFix" src="{{dataList[0].src}}" bindtap='previewImage' class="img_top"></image>
+      <image mode="widthFix" src="{{dataList.imgurl}}" bindtap='previewImage' class="img_top"></image>
     </view> 
     <view class="text_con" style="padding: 8px 24px 32px;">
-      {{dataList[0].text}}
+      {{dataList.word}}
     </view>
   </view>
 </view>
+
 <view class="item">
   <view class="text_art" bindtap="openArtical">
     <view class="text_header center">
@@ -59,6 +61,22 @@
     </view> 
   </view>
 </view>
+
+<!-- 英语每日一句 -->
+<view class="item" wx:if="{{englishList}}">
+  <view class="text_art" bindtap="openArtical">
+    <view class="text_header center">
+      - 每日英语 -
+    </view>
+    <view class="text_read">
+      <view class="en_content">{{englishList.content}}</view>
+      <view class="en_note">{{englishList.note}}</view>
+      <view class="en_source">{{englishList.source}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 历史上的今天 -->
 <view class="item" bindtap="openHistory">
   <view class="ml24">
     <view class="history_title">历史上的今天</view>
@@ -85,6 +103,8 @@
       <image mode="widthFix" src="/assets/images/more.gif" class="more_img"></image>
     </view>
 </view>
+
+<!-- 底部信息 -->
 <view class="footer">
   <text class="Copyright">Copyright</text>
   <image mode="widthFix" src="/assets/images/love.gif" class="love_img"></image>

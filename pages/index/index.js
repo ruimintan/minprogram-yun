@@ -1,16 +1,16 @@
 //index.js
+const TianKey='c9a62c7ee499f0963ecdf3c03e64e44f' //天行数据APPKEY
 const APIKEY = "07031f32f8b44d27a64702dbbbafb509";// 填入你申请的KEY
 const WXAPI = require('../../wxapi/main')
 const util = require('../../utils/util.js')
-const jinrishici = require('../../utils/jinrishici.js')
 const amapFile = require('../../libs/amap-wx.js');//如：..­/..­/libs/amap-wx.js
 
 Page({
   data: {
     liveData:{},//天气数据
-    dataList:[],//ONE近七日数据
+    dataList:null,//ONE一句
+    englishList:null,//每日英语
     sentence:[],//每日一句
-    jinrishici:[],//今日诗词
     artical:[],//每日一文
     bingUrl:'',//bing壁纸
     dateObj:{},
@@ -52,11 +52,6 @@ Page({
     this.getLocation()
   },
   onLoad: function () {
-    jinrishici.load(result => {
-      // 下面是处理逻辑示例
-      console.log(result)
-      this.setData({"jinrishici": result.data.content})
-    })
     this.setData({
       dateObj: util.getArticalDate(),
       articalDate: util.getArticalDate().articalDate,
@@ -179,25 +174,34 @@ Page({
   previewImage:function(e){
     var that = this;
     wx.previewImage({
-      current: that.data.dataList[0].src,//当前显示图片链接 
-      urls: [that.data.dataList[0].src], //要预览的图片
+      current: that.data.dataList.imgurl,//当前显示图片链接 
+      urls: [that.data.dataList.imgurl], //要预览的图片
     })
-    wx.getImageInfo({
-      src: that.data.dataList[0].src,
-      success(res){
-        console.log(res)
-      }
-    })
+    // wx.getImageInfo({
+    //   src: that.data.dataList.imgurl,
+    //   success(res){
+    //     console.log(res)
+    //   }
+    // })
   },
   getDataList:function(){
     let that = this;
     wx.showLoading({
       "title": "加载中"
     });                  
-    WXAPI.getOneList().then(function (res) { //获取ONE
+    // WXAPI.getOneList(TianKey).then(function (res) { //获取ONE
+    //   console.log(res)
+    //   if (res.code == 200) {
+    //     that.setData({
+    //       dataList: res.newslist[0],
+    //     })
+    //   }
+    // })
+    WXAPI.getEnglishToday(TianKey).then(function (res) { //获取每日英语
+      console.log(res)
       if (res.code == 200) {
         that.setData({
-          dataList: res.data,
+          englishList: res.newslist[0],
         })
       }
     })

@@ -168,17 +168,30 @@ page{
   height: 60px;
   width: 80px;
 }
-.en_content{
-  color: #000;
-  font-size: 18px;
+.enimg{
+  height: 500rpx;
+  background-image: url('https://staticedu-wps.cache.iciba.com/image/2c3dfdc776529db37f49680f611fd4e2.png');
+  background-size:100% auto;
+  background-position:0% 50%;
+  border-radius: 6px;
 }
-.en_note{
-  font-size: 16px;
-  margin: 8px 0;
+.en_icon{
+  margin: 16px 16px 24px 24px;
+  /* text-align: right; */
 }
-.en_source{
-  font-size: 12px;
-  color: #999;
+.en_icon .iconfont{
+  font-size: 22px;
+  color: #666666;
+  width: 50px;
+  display: inline-block;
+  text-align: center;
+}
+.en_icon .icon-notification{
+  margin-right: 8px;
+}
+.en_icon .icon-notificationfill{
+  margin-right: 8px;
+  color: #409EFF;
 }
 .center{
   text-align: center;

@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2604484",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "8817467",
+      "name": "生成海报",
+      "font_class": "shengchenghaibao",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "14559323",
+      "name": "图片",
+      "font_class": "tupian2",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "11372666",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e8b1",
+      "unicode_decimal": 59569
+    },
+    {
+      "icon_id": "7008928",
+      "name": "empty",
+      "font_class": "empty",
+      "unicode": "e6f7",
+      "unicode_decimal": 59127
+    },
+    {
+      "icon_id": "7008929",
+      "name": "empty_fill",
+      "font_class": "empty_fill",
+      "unicode": "e6f8",
+      "unicode_decimal": 59128
+    },
+    {
       "icon_id": "1121268",
       "name": "化妆品",
       "font_class": "huazhuangpin",

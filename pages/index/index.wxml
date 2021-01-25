@@ -13,6 +13,7 @@
     <text>{{temperature}}℃</text>
   </view>
 </view>
+<!-- 每日一句 -->
 <view class="item">
   <view class="text_card center">
     <view class="text_header center">
@@ -28,6 +29,7 @@
   </view>
 </view>
 
+<!-- ONE -->
 <view class="item">
   <view class="text_card">
     <view class="center">
@@ -39,6 +41,7 @@
   </view>
 </view>
 
+<!-- 每日一文 -->
 <view class="item">
   <view class="text_art" bindtap="openArtical">
     <view class="text_header center">
@@ -61,21 +64,22 @@
     </view> 
   </view>
 </view>
-
 <!-- 英语每日一句 -->
-<view class="item" wx:if="{{englishList}}">
-  <view class="text_art" bindtap="openArtical">
-    <view class="text_header center">
-      - 每日英语 -
-    </view>
-    <view class="text_read">
-      <view class="en_content">{{englishList.content}}</view>
-      <view class="en_note">{{englishList.note}}</view>
-      <view class="en_source">{{englishList.source}}</view>
-    </view>
+<view class="item" wx:if="{{en_imgurl}}">
+  <view class="ml24">
+    <view class="history_title">今日英语</view>
+  </view>
+  <view class="text_card" style="margin:16px;">
+    <!-- <view class="center enimg" style="background-image: url('{{en_imgurl}}')"> -->
+    <view class="center enimg"></view> 
+    <audio src="{{englishAudio}}" id="myAudio" bindended="funended" style="display:none"></audio>
+  </view>
+  <view class="en_icon">
+    <text class="iconfont icon-notification" bindtap="audioPlay" wx:if="{{notPlayAudio}}"></text>
+    <text class="iconfont icon-notificationfill" bindtap="audioPlay" wx:else></text>
+    <text class="iconfont icon-fenxiang"></text>
   </view>
 </view>
-
 <!-- 历史上的今天 -->
 <view class="item" bindtap="openHistory">
   <view class="ml24">

@@ -21,6 +21,8 @@ Page({
     en_month:'Jan',
     historyTodayData:[], //历史上的今天
     resultToday:'', 
+    englishAudio:'', 
+    notPlayAudio:true, 
   },
   //事件处理函数
   openArtical: function () {
@@ -50,6 +52,8 @@ Page({
    */
   onShow: function () {
     this.getLocation()
+    // 使用 wx.createAudioContext 获取 audio 上下文 context
+    this.audioCtx = wx.createAudioContext('myAudio')
   },
   onLoad: function () {
     this.setData({
@@ -58,6 +62,19 @@ Page({
       en_month: util.formatEnMonth(util.getArticalDate().month),
     })
     this.getDataList()
+  },
+  audioPlay: function () {
+    console.log(this.audioCtx)
+    this.audioCtx.play()
+    this.setData({
+     notPlayAudio:false
+    })
+  },
+  funended: function () {//播放结束按钮函数
+    console.log("播放结束")
+    this.setData({
+      notPlayAudio:true
+    })
   },
    /**
    * 获取定位
@@ -189,19 +206,21 @@ Page({
     wx.showLoading({
       "title": "加载中"
     });                  
-    // WXAPI.getOneList(TianKey).then(function (res) { //获取ONE
-    //   console.log(res)
-    //   if (res.code == 200) {
-    //     that.setData({
-    //       dataList: res.newslist[0],
-    //     })
-    //   }
-    // })
+    WXAPI.getOneList(TianKey).then(function (res) { //获取ONE
+      console.log(res)
+      if (res.code == 200) {
+        that.setData({
+          dataList: res.newslist[0],
+        })
+      }
+    })
     WXAPI.getEnglishToday(TianKey).then(function (res) { //获取每日英语
       console.log(res)
       if (res.code == 200) {
         that.setData({
           englishList: res.newslist[0],
+          en_imgurl: res.newslist[0].imgurl,
+          englishAudio: res.newslist[0].tts
         })
       }
     })
@@ -254,7 +273,9 @@ Page({
           historyTodayData: res.result,
         })
         wx.hideLoading()
-      }   
+      }else{ // 请求失败回调
+        that.getHistoryToday()
+      }     
     }).catch(function (e) {
       console.log(e)
     })

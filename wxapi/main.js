@@ -52,8 +52,8 @@ Promise.prototype.finally = function (callback) {
 module.exports = {
   request,
   // 首页
-  getOneList: data => request('api.youngam.cn/api/one.php','get', data), //ONE一个接口
-//   getOneList: data => request('api.tianapi.com/txapi/one/index?key='+ data,'get', data), //ONE一个接口
+  // getOneList: data => request('api.youngam.cn/api/one.php','get', data), //ONE一个接口
+  getOneList: data => request('api.tianapi.com/txapi/one/index?key='+ data,'get', data), //ONE一个接口
   getHitokoto: (data) => request('v1.hitokoto.cn/?c='+data,'get', data),   // 一言接口
   getBingPic: (data) => request('api.xygeng.cn/Bing/url/','get', data),   // bing每日图片
   getTodayArtical: (data) => request(

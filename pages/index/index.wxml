@@ -70,8 +70,8 @@
     <view class="history_title">今日英语</view>
   </view>
   <view class="text_card" style="margin:16px;">
-    <!-- <view class="center enimg" style="background-image: url('{{en_imgurl}}')"> -->
-    <view class="center enimg"></view> 
+    <view class="center enimg" style="background-image: url('{{en_imgurl}}')"></view> 
+    <!-- <view class="center enimg"></view>  -->
     <audio src="{{englishAudio}}" id="myAudio" bindended="funended" style="display:none"></audio>
   </view>
   <view class="en_icon">

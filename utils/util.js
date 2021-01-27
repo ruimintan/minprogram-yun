@@ -33,6 +33,35 @@ const getArticalDate = ()=>{
  return dateObj
 }
 
+const formatDate = ()=>{ // 每日5:30更新日期查询
+  let now = new Date()
+  let year = now.getFullYear(); //得到年份
+  let month = now.getMonth();//得到月份
+  let date = now.getDate();//得到日期
+  month = month + 1
+  if (month < 10) month = "0" + month
+  if (date < 10) date = "0" + date
+
+  let yesterday = new Date(new Date(new Date().getTime()-24*60*60*1000).setHours(0,0,0,0)) // 昨天0点
+  let year1 = yesterday.getFullYear(); //得到年份
+  let month1 = yesterday.getMonth();//得到月份
+  let date1 = yesterday.getDate();//得到日期
+  month1 = month1 + 1
+  if (month1 < 10) month1 = "0" + month1
+  if (date1 < 10) date1 = "0" + date1
+
+  const timestamp0 = new Date(new Date().getTime()).setHours(0,0,0,0) // 当天0点的时间戳
+  const timestamp1 = new Date().getTime() // 当前时间的时间戳
+  const timespread = timestamp1-timestamp0 // 时间差
+  let searchDate = ''
+  if(timespread>(5.5*60*60*1000)){ // 当天5点半之后请求当天，否则请求昨天
+    searchDate = year + '-'+ month + '-'+ date
+  }else{
+    searchDate = year1 + '-'+ month1 + '-'+ date1
+  }
+ return searchDate
+}
+
 const formatEnMonth = (month) => {
   month = month.toString()
   let en_month="Jan"
@@ -59,4 +88,5 @@ module.exports = {
   getArticalDate: getArticalDate,
   formatEnMonth: formatEnMonth,
   formatAir: formatAir,
+  formatDate: formatDate,
 }

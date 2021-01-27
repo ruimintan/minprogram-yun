@@ -169,8 +169,8 @@ page{
   width: 80px;
 }
 .enimg{
-  height: 500rpx;
-  background-image: url('https://staticedu-wps.cache.iciba.com/image/2c3dfdc776529db37f49680f611fd4e2.png');
+  height: 480rpx;
+  /* background-image: url('https://staticedu-wps.cache.iciba.com/image/2c3dfdc776529db37f49680f611fd4e2.png'); */
   background-size:100% auto;
   background-position:0% 50%;
   border-radius: 6px;

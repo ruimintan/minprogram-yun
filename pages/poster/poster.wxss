@@ -1,0 +1,21 @@
+page{
+  background: #f0f2f5;
+}
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+
+.down_btn{
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-top: 32px;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+  font-size: 16px;
+}

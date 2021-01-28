@@ -1,0 +1,10 @@
+<!--logs.wxml-->
+<view class="container log-list">
+  <view>
+    <canvas class="canvas-poster" style="width:310px; height:500px;" id="canvasPoster" canvas-id="canvasPoster"></canvas>
+    <view class="down_btn" bindtap="savePoster">
+      <text class="iconfont icon-down"></text>
+      保存图片
+    </view>
+  </view>
+</view>

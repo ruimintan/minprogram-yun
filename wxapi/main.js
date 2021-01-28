@@ -60,5 +60,5 @@ module.exports = {
                             'interface.meiriyiwen.com/article/day?dev=1&date='+data,
                             'get', data),     // 每日一文 支持日期20110306-20200521
   getHistoryToday: (data) => request('www.ipip5.com/today/api.php?type='+ data,'get', data),   // 历史上的今天
-  getEnglishToday: (data) => request('api.tianapi.com/txapi/everyday/index?key='+ data,'get', data),   // 每日一句英语
+  getEnglishToday: (data) => request('api.tianapi.com/txapi/everyday/index?key=' + data.key + '&date=' +data.date,'get', data), // 每日英语
 }

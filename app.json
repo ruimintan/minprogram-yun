@@ -4,7 +4,7 @@
     "pages/articals/articals",
     "pages/weather/weather",
     "pages/history/history",
-    "pages/logs/logs"
+    "pages/poster/poster"
   ],
 
   "window":{

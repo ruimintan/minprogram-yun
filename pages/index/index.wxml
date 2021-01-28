@@ -77,7 +77,7 @@
   <view class="en_icon">
     <text class="iconfont icon-notification" bindtap="audioPlay" wx:if="{{notPlayAudio}}"></text>
     <text class="iconfont icon-notificationfill" bindtap="audioPlay" wx:else></text>
-    <text class="iconfont icon-fenxiang"></text>
+    <text class="iconfont icon-fenxiang" bindtap="creatPoster"></text>
   </view>
 </view>
 <!-- 历史上的今天 -->

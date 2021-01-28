@@ -23,6 +23,7 @@ Page({
     historyTodayData:[], //历史上的今天
     resultToday:'', 
     englishAudio:'', 
+    shareImage:'', 
     notPlayAudio:true, 
   },
   //事件处理函数
@@ -83,6 +84,14 @@ Page({
     this.setData({
       notPlayAudio:true
     })
+  },
+  creatPoster(){ // 每日英语生成海报
+    const shareImage=this.data.shareImage
+    if(shareImage){
+      wx.navigateTo({
+        url: '../poster/poster?shareImage=' + shareImage,
+      })
+    }
   },
    /**
    * 获取定位
@@ -209,6 +218,25 @@ Page({
     //   }
     // })
   },
+  getEnImage:function (url) {
+    let that = this;
+    wx.getImageInfo({
+      src: url,
+      success: function (res) {
+        console.log(res,'8888888888888888')
+        that.setData({
+          shareImage: res.path,
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+        wx.showToast({
+          title: '网络错误请重试',
+          icon: 'loading'
+        })
+      }
+    })
+  },
   getDataList:function(){
     let that = this;
     wx.showLoading({
@@ -226,13 +254,16 @@ Page({
         })
       }
     })
-    WXAPI.getEnglishToday(TianKey).then(function (res) { //获取每日英语
+    WXAPI.getEnglishToday(params).then(function (res) { //获取每日英语
       console.log(res)
       if (res.code == 200) {
         that.setData({
           englishList: res.newslist[0],
           en_imgurl: res.newslist[0].imgurl,
           englishAudio: res.newslist[0].tts
+        },
+        ()=>{
+          that.getEnImage(res.newslist[0].imgurl)
         })
       }
     })

@@ -33,7 +33,7 @@ const getArticalDate = ()=>{
  return dateObj
 }
 
-const formatDate = ()=>{ // 每日5:30更新日期查询
+const formatDate = (time)=>{ // 每日5:30更新日期查询
   let now = new Date()
   let year = now.getFullYear(); //得到年份
   let month = now.getMonth();//得到月份
@@ -54,7 +54,7 @@ const formatDate = ()=>{ // 每日5:30更新日期查询
   const timestamp1 = new Date().getTime() // 当前时间的时间戳
   const timespread = timestamp1-timestamp0 // 时间差
   let searchDate = ''
-  if(timespread>(5.5*60*60*1000)){ // 当天5点半之后请求当天，否则请求昨天
+  if(timespread>(time*60*60*1000)){ // 当天5点半之后请求当天，否则请求昨天
     searchDate = year + '-'+ month + '-'+ date
   }else{
     searchDate = year1 + '-'+ month1 + '-'+ date1

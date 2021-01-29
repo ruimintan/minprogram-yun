@@ -18,7 +18,8 @@ Page({
     nowWeather:'',
     temperature:'',
     articalDate:'20110310',
-    searchDate:'',
+    searchDateTime5:'',
+    searchDateTime8:'',
     en_month:'Jan',
     historyTodayData:[], //历史上的今天
     resultToday:'', 
@@ -61,7 +62,8 @@ Page({
     this.setData({
       dateObj: util.getArticalDate(),
       articalDate: util.getArticalDate().articalDate,
-      searchDate: util.formatDate(),
+      searchDateTime5: util.formatDate(5.5),
+      searchDateTime8: util.formatDate(8),
       en_month: util.formatEnMonth(util.getArticalDate().month),
     },
     ()=>{
@@ -244,9 +246,13 @@ Page({
     });
     const params={
       key:TianKey,
-      date: that.data.searchDate  
+      date: that.data.searchDateTime5  
+    }  
+    const params1={
+      key:TianKey,
+      date: that.data.searchDateTime8 
     }              
-    WXAPI.getOneList(params).then(function (res) { //获取ONE
+    WXAPI.getOneList(params1).then(function (res) { //获取ONE
       console.log(res)
       if (res.code == 200) {
         that.setData({

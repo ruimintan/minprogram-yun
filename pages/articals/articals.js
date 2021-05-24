@@ -6,14 +6,16 @@ Page({
   data: {
     artical:[],//每日一文
     content:'',
-    articalDate:'20110310',
+    articalDate:'20110408',
     bingUrl:'',//bing壁纸
   },
  
-  onLoad: function () {
-    this.setData({
-      articalDate: util.getArticalDate().articalDate
-    })
+  onLoad: function (option) {
+    if(option.isTodayArtical==true){
+      this.setData({
+        articalDate: util.getArticalDate().articalDate
+      })
+    }
     this.getArtical()
     this.getBing()
   },

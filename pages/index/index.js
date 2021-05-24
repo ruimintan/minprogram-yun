@@ -12,6 +12,8 @@ Page({
     englishList:null,//每日英语
     sentence:[],//每日一句
     artical:[],//每日一文
+    isTodayArtical:false,
+    defaultArtical:[],//随机一文
     bingUrl:'',//bing壁纸
     dateObj:{},
     city:'',
@@ -29,8 +31,10 @@ Page({
   },
   //事件处理函数
   openArtical: function () {
+    var that = this;
+    let isTodayArtical=that.data.isTodayArtical
    wx.navigateTo({
-     url: '../articals/articals',
+     url: '../articals/articals?isTodayArtical='+ isTodayArtical,
    })
   },
   // 打开历史上的今天
@@ -291,8 +295,22 @@ Page({
     const data=that.data.articalDate
     WXAPI.getTodayArtical(data).then(function (res) {
       console.log(res)
+      if(res.data){
         that.setData({
           artical: res.data,
+          isTodayArtical: true,
+        })
+      }else{
+        that.setData({
+          isTodayArtical: false,
+        })
+      }
+    })
+    // 获取随机一文
+    WXAPI.getDefaultArtical().then(function (res) {
+      console.log(res)
+        that.setData({
+          defaultArtical: res.data,
         })
     })
     // 获取历史上的一天

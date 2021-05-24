@@ -49,13 +49,13 @@
     </view>
     <view class="text_read">
       <view class="text_title">
-        {{artical.title}}
+        {{artical.title||defaultArtical.title}}
       </view>
       <view class="text_author">
-        文 / {{artical.author}}
+        文 / {{artical.author||defaultArtical.author}}
       </view>
       <view class="text_des">
-        <text>{{artical.digest}}......</text>
+        <text>{{artical.digest||defaultArtical.digest}}......</text>
         <text class="more">阅读全文</text>        
       </view>
     </view>
